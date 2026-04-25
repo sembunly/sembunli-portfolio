@@ -33,13 +33,13 @@ const skills = [
     tags: ["Laravel", "REST API", "MySQL", "PHP"],
     color: COLORS.accent2,
   },
-{
-  icon: "◈",
-  title: "Mobile Development",
-  desc: "Developing cross-platform mobile applications using Flutter, focusing on responsive UI, navigation, and basic app functionality.",
-  tags: ["Flutter", "Dart", "UI Widgets", "Mobile Apps"],
-  color: COLORS.accent3,
-},
+  {
+    icon: "◈",
+    title: "Mobile Development",
+    desc: "Developing cross-platform mobile applications using Flutter, focusing on responsive UI, navigation, and basic app functionality.",
+    tags: ["Flutter", "Dart", "UI Widgets", "Mobile Apps"],
+    color: COLORS.accent3,
+  },
 ];
 
 const projects = [
@@ -63,10 +63,9 @@ const projects = [
     color: COLORS.accent2,
     img: ecomImg,
     imgAlt: "UI design mockup on screen",
-    link: "https://github.com/sembunly/laptop-store"
+    link: "https://github.com/sembunly/laptop-store",
   },
 ];
-
 
 const contacts = [
   {
@@ -296,21 +295,21 @@ function Counter({ target, suffix = "" }) {
 
 /* ── Marquee ── */
 function Marquee() {
- const items = [
-  "C#",
-  "C++",
-  "PHP",
-  "JavaScript",
-  "Laravel",
-  "REST API",
-  "MSSQL",
-  "MySQL",
-  "Git",
-  "GitHub",
-  "GitLab",
-  "Postman",
-  "Visual Studio"
-];
+  const items = [
+    "C#",
+    "C++",
+    "PHP",
+    "JavaScript",
+    "Laravel",
+    "REST API",
+    "MSSQL",
+    "MySQL",
+    "Git",
+    "GitHub",
+    "GitLab",
+    "Postman",
+    "Visual Studio",
+  ];
   const doubled = [...items, ...items];
   return (
     <div
@@ -392,7 +391,7 @@ function Nav({ scrollY }) {
           color: COLORS.accent,
         }}
       >
-      SEM BUNLY
+        SEM BUNLY
       </div>
       <div className="nav-links" style={{ display: "flex", gap: 36 }}>
         {sections.map((s) => (
@@ -581,7 +580,8 @@ function Hero() {
             textAlign: "left",
           }}
         >
-        Building scalable and efficient applications — from backend systems to user-focused interfaces. Based in Phnom Penh, Cambodia.
+          Building scalable and efficient applications — from backend systems to
+          user-focused interfaces. Based in Phnom Penh, Cambodia.
         </p>
         <div className="hero-scroll-wrapper">
           <ScrollIndicator loaded={loaded} />
@@ -656,7 +656,7 @@ function About() {
           }}
         >
           Crafting with{" "}
-<em style={{ color: COLORS.accent, fontStyle: "italic" }}>code</em>.
+          <em style={{ color: COLORS.accent, fontStyle: "italic" }}>code</em>.
         </h2>
         <p
           style={{
@@ -667,7 +667,9 @@ function About() {
             marginBottom: 14,
           }}
         >
-          I'm a third-year Software Engineering student at Beltei International University (BUI). I build scalable, user-focused web applications with an emphasis on clean design and reliable systems.
+          I'm a third-year Software Engineering student at Beltei International
+          University (BUI). I build scalable, user-focused web applications with
+          an emphasis on clean design and reliable systems.
         </p>
         <p
           style={{
@@ -678,7 +680,9 @@ function About() {
             marginBottom: 32,
           }}
         >
-      I believe great applications are built on strong logic and clean design. My work focuses on building reliable systems with efficient architecture.
+          I believe great applications are built on strong logic and clean
+          design. My work focuses on building reliable systems with efficient
+          architecture.
         </p>
         <CtaButton href="#contact">Get in Touch →</CtaButton>
       </Reveal>
@@ -1114,7 +1118,12 @@ function ProjectCard({
           {CardContent}
         </Link>
       ) : link ? (
-        <a href={link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
+        >
           {CardContent}
         </a>
       ) : (
@@ -1123,8 +1132,6 @@ function ProjectCard({
     </Reveal>
   );
 }
-
- 
 
 /* ── Contact ── */
 function Contact() {
