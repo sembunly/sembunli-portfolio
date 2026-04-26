@@ -639,10 +639,10 @@ function ScrollIndicator({ loaded }) {
 /* ── About ── */
 function About() {
   const stats = [
-    { num: "3rd", label: "Year at BIU" },
-    { num: 3, label: "Disciplines" },
-    { icon: "all_inclusive", label: "Curiosity" },
-    { num: "KH", label: "Phnom Penh" },
+    { num: "3rd", label: "Year at BELTEI International University" },
+    // { num: 3, label: "Disciplines" },
+    // { icon: "all_inclusive", label: "Curiosity" },
+    { num: "CAMBODIA", label: "Phnom Penh" },
   ];
   return (
     <section
