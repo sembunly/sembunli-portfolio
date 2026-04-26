@@ -4,6 +4,7 @@ import profileImg from "./assets/me.png";
 import profileImgMobile from "./assets/me2.png";
 import calculatorImg from "./assets/calculator.png";
 import ecomImg from "./assets/ecom.jpg";
+import fashtionImg from "./assets/fashion-shopping.jpg";
 
 const COLORS = {
   bg: "#000000",
@@ -64,6 +65,17 @@ const projects = [
     img: ecomImg,
     imgAlt: "UI design mockup on screen",
     link: "https://github.com/sembunly/laptop-store",
+  },
+    {
+    num: "03",
+    name: "Fashtion E-commerce",
+    desc: "A modern e-commerce platform for fashion products, featuring a sleek design and seamless shopping experience.",
+    type: "React / Tailwind",
+    year: "2026",
+    color: COLORS.accent3,
+    img: fashtionImg,
+    imgAlt: "UI design mockup on screen",
+    link: "https://seven8-shop.vercel.app/",
   },
 ];
 
