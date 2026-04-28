@@ -21,21 +21,21 @@ const COLORS = {
 
 const skills = [
   {
-    icon: "⬡",
+    icon: "💻",
     title: "Frontend Development",
     desc: "Building performant, pixel-perfect interfaces. Clean, maintainable code with thoughtful micro-interactions that elevate user experience.",
     tags: ["HTML/CSS", "JavaScript", "React", "Tailwind"],
     color: COLORS.accent,
   },
   {
-    icon: "◎",
+    icon: "⚙️",
     title: "Backend Development",
     desc: "Building scalable and efficient server-side applications, designing RESTful APIs, and managing databases to support reliable systems.",
     tags: ["Laravel", "REST API", "MySQL", "PHP"],
     color: COLORS.accent2,
   },
   {
-    icon: "◈",
+    icon: "📱",
     title: "Mobile Development",
     desc: "Developing cross-platform mobile applications using Flutter, focusing on responsive UI, navigation, and basic app functionality.",
     tags: ["Flutter", "Dart", "UI Widgets", "Mobile Apps"],
@@ -592,8 +592,7 @@ function Hero() {
             textAlign: "left",
           }}
         >
-          Building scalable and efficient applications — from backend systems to
-          user-focused interfaces. Based in Phnom Penh, Cambodia.
+          Passionate about learning software development, focusing on both frontend and backend technologies.
         </p>
         <div className="hero-scroll-wrapper">
           <ScrollIndicator loaded={loaded} />
@@ -894,7 +893,7 @@ function Projects() {
         >
           Selected
           <br />
-          Projects
+          <span style={{ color: COLORS.accent }}>Projects</span>
         </h2>
       </Reveal>
       {/* Featured top row: 2 wide cards */}
