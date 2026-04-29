@@ -41,6 +41,13 @@ const skills = [
     tags: ["Flutter", "Dart", "UI Widgets", "Mobile Apps"],
     color: COLORS.accent3,
   },
+  {
+    icon: "🔧",
+    title: "Tools",
+    desc: "Proficient in using various development tools and technologies to enhance productivity and code quality.",
+    tags: ["Git", "GitHub", "VS Code", "Visual Studio", "Postman"],
+    color: COLORS.accent,
+  },
 ];
 
 const projects = [
