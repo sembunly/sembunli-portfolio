@@ -334,10 +334,10 @@ function Marquee() {
     <div
       style={{
         overflow: "hidden",
-        borderTop: `1px solid ${COLORS.border}`,
-        borderBottom: `1px solid ${COLORS.border}`,
+        borderTop: `1px solid ${COLORS.accent}`,
+        borderBottom: `1px solid ${COLORS.accent}`,
         background: COLORS.bg,
-        padding: "18px 0",
+        padding: "15px 0",
         position: "relative",
         zIndex: 10,
       }}
@@ -347,7 +347,7 @@ function Marquee() {
         style={{
           display: "flex",
           whiteSpace: "nowrap",
-          animation: "marquee 20s linear infinite",
+          animation: "marquee 10s linear infinite",
         }}
       >
         {doubled.map((item, i) => (
@@ -366,7 +366,7 @@ function Marquee() {
             }}
           >
             {item}
-            <span style={{ color: COLORS.accent, fontSize: 34 }}>✦</span>
+            <span style={{ color: COLORS.accent, fontSize: 18 }}>⭑</span>
           </span>
         ))}
       </div>
@@ -490,23 +490,6 @@ function Hero() {
         }}
       >
         <div style={{ flex: 1 }} className="hero-text">
-          <div
-            style={{
-              ...anim(0.1),
-              fontFamily: "monospace",
-              fontSize: 11,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: COLORS.accent,
-              marginBottom: 28,
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-            }}
-          >
-            <span style={{ width: 30, height: 1, background: COLORS.accent }} />{" "}
-            Portfolio · Software Engineering· BIU
-          </div>
           <h1
             style={{
               ...anim(0.3),
@@ -525,9 +508,9 @@ function Hero() {
           <p
             style={{
               ...anim(0.5),
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "Georgia, serif",
               fontStyle: "italic",
-              fontSize: "clamp(20px, 3.5vw, 42px)",
+              fontSize: "clamp(20px, 3.5vw, 35px)",
               color: COLORS.muted,
               marginTop: 24,
               letterSpacing: "0.02em",
@@ -601,44 +584,8 @@ function Hero() {
         >
           Passionate about learning software development, focusing on both frontend and backend technologies.
         </p>
-        <div className="hero-scroll-wrapper">
-          <ScrollIndicator loaded={loaded} />
-        </div>
       </div>
     </section>
-  );
-}
-
-function ScrollIndicator({ loaded }) {
-  return (
-    <div
-      style={{
-        opacity: loaded ? 1 : 0,
-        transform: loaded ? "translateY(0)" : "translateY(20px)",
-        transition: "all 1s 1s ease",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 12,
-        fontFamily: "monospace",
-        fontSize: 10,
-        letterSpacing: "0.2em",
-        textTransform: "uppercase",
-        color: COLORS.muted,
-      }}
-    >
-      <style>{`@keyframes scrollPulse{0%,100%{transform:scaleY(0.7);opacity:0.3}50%{transform:scaleY(1);opacity:1}}`}</style>
-      SCROLL
-      <div
-        style={{
-          width: 1,
-          height: 48,
-          background: `linear-gradient(to bottom,${COLORS.accent},transparent)`,
-          transformOrigin: "top",
-          animation: "scrollPulse 2s infinite",
-        }}
-      />
-    </div>
   );
 }
 
@@ -702,7 +649,6 @@ function About() {
           design. My work focuses on building reliable systems with efficient
           architecture.
         </p>
-        <CtaButton href="#contact">Get in Touch →</CtaButton>
       </Reveal>
       <Reveal delay={0.15}>
         <div
@@ -776,7 +722,6 @@ function Skills() {
       style={{ padding: "0 56px 140px" }}
     >
       <Reveal>
-        <SectionLabel>What I Do</SectionLabel>
         <h2
           style={{
             fontFamily: "'Bebas Neue', sans-serif",
