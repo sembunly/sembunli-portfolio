@@ -329,45 +329,122 @@ function Marquee() {
     "Postman",
     "Visual Studio",
   ];
+
   const doubled = [...items, ...items];
+
+  const COLORS = {
+    accent: "#4DF0C0",
+    bg: "#050816",
+    muted: "#94A3B8",
+  };
+
   return (
     <div
       style={{
+        width: "100%",
         overflow: "hidden",
-        borderTop: `1px solid ${COLORS.accent}`,
-        borderBottom: `1px solid ${COLORS.accent}`,
+        borderTop: `1px solid ${COLORS.accent}40`,
+        borderBottom: `1px solid ${COLORS.accent}40`,
         background: COLORS.bg,
-        padding: "15px 0",
+        padding: "16px 0",
         position: "relative",
         zIndex: 10,
       }}
     >
-      <style>{`@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}`}</style>
+      <style>
+        {`
+          @keyframes marqueeScroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+
+          .marquee-track {
+            width: max-content;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            animation: marqueeScroll 18s linear infinite;
+          }
+
+          .marquee-track:hover {
+            animation-play-state: paused;
+          }
+
+          @media (max-width: 768px) {
+            .marquee-track {
+              animation-duration: 12s;
+            }
+          }
+        `}
+      </style>
+
+      {/* Fade Left */}
       <div
         style={{
-          display: "flex",
-          whiteSpace: "nowrap",
-          animation: "marquee 10s linear infinite",
+          position: "absolute",
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: "80px",
+          background: `linear-gradient(to right, ${COLORS.bg}, transparent)`,
+          zIndex: 2,
+          pointerEvents: "none",
         }}
-      >
+      />
+
+      {/* Fade Right */}
+      <div
+        style={{
+          position: "absolute",
+          right: 0,
+          top: 0,
+          bottom: 0,
+          width: "80px",
+          background: `linear-gradient(to left, ${COLORS.bg}, transparent)`,
+          zIndex: 2,
+          pointerEvents: "none",
+        }}
+      />
+
+      <div className="marquee-track">
         {doubled.map((item, i) => (
-          <span
+          <div
             key={i}
             style={{
-              fontFamily: "monospace",
-              fontSize: 13,
-              fontWeight: 700,
-              letterSpacing: "0.15em",
-              color: "#6e778a",
-              padding: "0 40px",
               display: "flex",
               alignItems: "center",
-              gap: 40,
+              gap: "26px",
+              padding: "0 28px",
+              flexShrink: 0,
             }}
           >
-            {item}
-            <span style={{ color: COLORS.accent, fontSize: 18 }}>⭑</span>
-          </span>
+            <span
+              style={{
+                fontFamily: "monospace",
+                fontSize: "clamp(12px, 1vw, 14px)",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                color: COLORS.muted,
+                textTransform: "uppercase",
+              }}
+            >
+              {item}
+            </span>
+
+            <span
+              style={{
+                color: COLORS.accent,
+                fontSize: 16,
+                opacity: 0.9,
+              }}
+            >
+              ✦
+            </span>
+          </div>
         ))}
       </div>
     </div>
@@ -379,101 +456,271 @@ function Nav({ scrollY }) {
   const sections = ["about", "skills", "projects", "contact"];
   const dir = useScrollDirection();
   const isMobile = useIsMobile();
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const scrolled = scrollY > 60;
-  const isHidden = isMobile && dir === "down";
+  const isHidden = isMobile && dir === "down" && !menuOpen;
+
+  const COLORS = {
+    accent: "#4DF0C0",
+    muted: "#B5B5B5",
+    white: "#FFFFFF",
+    border: "rgba(255,255,255,0.08)",
+    bg: "#050816",
+  };
 
   return (
-    <nav
-      className="nav-container"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "22px 56px",
-        borderBottom: `1px solid ${scrolled ? COLORS.border : "transparent"}`,
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        background: scrolled ? "rgba(0,0,0,0.85)" : "transparent",
-        transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-        transform: isHidden ? "translateY(-100%)" : "translateY(0)",
-      }}
-    >
-      <div
+    <>
+      <nav
+        className="nav-container"
         style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: 22,
-          letterSpacing: "0.1em",
-          color: COLORS.accent,
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: isMobile ? "18px 20px" : "22px 56px",
+          borderBottom: `1px solid ${
+            scrolled ? COLORS.border : "transparent"
+          }`,
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+          background: scrolled
+            ? "rgba(5,8,22,0.88)"
+            : "rgba(5,8,22,0.2)",
+          transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+          transform: isHidden ? "translateY(-100%)" : "translateY(0)",
         }}
       >
-        SEM BUNLY
-      </div>
-      <div className="nav-links" style={{ display: "flex", gap: 36 }}>
-        {sections.map((s) => (
-          <a
-            key={s}
-            href={`#${s}`}
+        {/* Logo */}
+        <a
+          href="#home"
+          style={{
+            fontFamily: "'Bebas Neue', sans-serif",
+            fontSize: isMobile ? 24 : 28,
+            letterSpacing: "0.12em",
+            color: COLORS.accent,
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          SEM BUNLY
+        </a>
+
+        {/* Desktop Menu */}
+        {!isMobile && (
+          <div
+            className="nav-links"
             style={{
-              fontFamily: "monospace",
-              fontSize: 11,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: COLORS.muted,
-              textDecoration: "none",
-              transition: "color 0.2s",
+              display: "flex",
+              alignItems: "center",
+              gap: 36,
             }}
-            onMouseEnter={(e) => (e.target.style.color = COLORS.accent)}
-            onMouseLeave={(e) => (e.target.style.color = COLORS.muted)}
           >
-            {s}
-          </a>
-        ))}
-      </div>
-    </nav>
+            {sections.map((s) => (
+              <a
+                key={s}
+                href={`#${s}`}
+                style={{
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: COLORS.muted,
+                  textDecoration: "none",
+                  transition: "0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.color = COLORS.accent;
+                  e.target.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = COLORS.muted;
+                  e.target.style.transform = "translateY(0)";
+                }}
+              >
+                {s}
+              </a>
+            ))}
+          </div>
+        )}
+
+        {/* Mobile Button */}
+        {isMobile && (
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              width: 46,
+              height: 46,
+              borderRadius: "50%",
+              border: `1px solid ${COLORS.border}`,
+              background: "rgba(255,255,255,0.04)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 5,
+              cursor: "pointer",
+              transition: "0.3s",
+            }}
+          >
+            <span
+              style={{
+                width: 18,
+                height: 2,
+                background: COLORS.white,
+                borderRadius: 10,
+                transform: menuOpen
+                  ? "rotate(45deg) translateY(5px)"
+                  : "rotate(0)",
+                transition: "0.3s",
+              }}
+            />
+            <span
+              style={{
+                width: 18,
+                height: 2,
+                background: COLORS.white,
+                borderRadius: 10,
+                opacity: menuOpen ? 0 : 1,
+                transition: "0.3s",
+              }}
+            />
+            <span
+              style={{
+                width: 18,
+                height: 2,
+                background: COLORS.white,
+                borderRadius: 10,
+                transform: menuOpen
+                  ? "rotate(-45deg) translateY(-5px)"
+                  : "rotate(0)",
+                transition: "0.3s",
+              }}
+            />
+          </button>
+        )}
+      </nav>
+
+      {/* Mobile Menu */}
+      {isMobile && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            right: menuOpen ? 0 : "-100%",
+            width: "100%",
+            height: "100vh",
+            background: "rgba(5,8,22,0.98)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            zIndex: 999,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 32,
+            transition: "0.45s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+        >
+          {sections.map((s, i) => (
+            <a
+              key={s}
+              href={`#${s}`}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                color: COLORS.white,
+                textDecoration: "none",
+                fontSize: 28,
+                textTransform: "uppercase",
+                letterSpacing: "0.15em",
+                fontFamily: "'Bebas Neue', sans-serif",
+                opacity: menuOpen ? 1 : 0,
+                transform: menuOpen
+                  ? "translateY(0)"
+                  : "translateY(20px)",
+                transition: `all 0.5s ${i * 0.08}s ease`,
+              }}
+            >
+              {s}
+            </a>
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 
 /* ── Hero ── */
 function Hero() {
   const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
-    setTimeout(() => setLoaded(true), 100);
+    const timer = setTimeout(() => setLoaded(true), 100);
+    return () => clearTimeout(timer);
   }, []);
-  const anim = (delay) => ({
+
+  const COLORS = {
+    white: "#ffffff",
+    accent: "#4DF0C0",
+    muted: "#b8b8b8",
+    bg: "#050816",
+  };
+
+  const anim = (delay, targetTransform = "translateY(0)") => ({
     opacity: loaded ? 1 : 0,
-    transform: loaded ? "translateY(0)" : "translateY(32px)",
-    transition: `opacity 1s ${delay}s ease, transform 1s ${delay}s ease`,
+    transform: loaded ? targetTransform : "translateY(40px)",
+    transition: `all 1s ${delay}s cubic-bezier(0.22,1,0.36,1)`,
   });
 
   return (
     <section
       id="home"
-      className="hero-section"
       style={{
         minHeight: "100vh",
+        width: "100%",
         display: "flex",
-        flexDirection: "column",
+        alignItems: "center",
         justifyContent: "center",
-        padding: "0 8%",
+        padding: "120px 6% 40px",
         position: "relative",
         overflow: "hidden",
+        background: COLORS.bg,
       }}
     >
-      {/* Grid BG */}
+      {/* Grid Background */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `linear-gradient(rgba(77,240,192,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(77,240,192,0.03) 1px,transparent 1px)`,
+          backgroundImage: `
+            linear-gradient(rgba(77,240,192,0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(77,240,192,0.05) 1px, transparent 1px)
+          `,
           backgroundSize: "60px 60px",
           WebkitMaskImage:
-            "radial-gradient(ellipse 70% 70% at 50% 50%,black 0%,transparent 100%)",
+            "radial-gradient(circle at center, black 40%, transparent 100%)",
           maskImage:
-            "radial-gradient(ellipse 70% 70% at 50% 50%,black 0%,transparent 100%)",
+            "radial-gradient(circle at center, black 40%, transparent 100%)",
+          zIndex: 0,
+        }}
+      />
+
+      {/* Glow */}
+      <div
+        style={{
+          position: "absolute",
+          width: "500px",
+          height: "500px",
+          borderRadius: "50%",
+          background: `${COLORS.accent}10`,
+          filter: "blur(100px)",
+          top: "10%",
+          right: "-100px",
           zIndex: 0,
         }}
       />
@@ -481,21 +728,31 @@ function Hero() {
       <div
         className="hero-content"
         style={{
+          width: "100%",
+          maxWidth: "1400px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          gap: "40px",
           position: "relative",
           zIndex: 2,
-          width: "100%",
+          flexWrap: "wrap",
         }}
       >
-        <div style={{ flex: 1 }} className="hero-text">
+        {/* LEFT */}
+        <div
+          className="hero-text"
+          style={{
+            flex: "1 1 500px",
+            minWidth: "280px",
+          }}
+        >
           <h1
             style={{
-              ...anim(0.3),
+              ...anim(0.2),
               fontFamily: "'Bebas Neue', sans-serif",
-              fontSize: "clamp(80px, 15vw, 180px)",
-              lineHeight: 0.82,
+              fontSize: "clamp(70px, 15vw, 180px)",
+              lineHeight: 0.85,
               letterSpacing: "-0.01em",
               margin: 0,
               textTransform: "uppercase",
@@ -505,85 +762,115 @@ function Hero() {
             <br />
             <span style={{ color: COLORS.accent }}>Bunly</span>
           </h1>
+
           <p
             style={{
-              ...anim(0.5),
-              fontFamily: "Georgia, serif",
-              fontStyle: "italic",
-              fontSize: "clamp(20px, 3.5vw, 35px)",
+              ...anim(0.35),
+              marginTop: "18px",
               color: COLORS.muted,
-              marginTop: 24,
+              fontSize: "clamp(16px, 2vw, 28px)",
+              lineHeight: 1.6,
+              maxWidth: "650px",
+              fontWeight: 400,
               letterSpacing: "0.02em",
             }}
           >
             3rd Year Software Engineering Student
           </p>
+
+          <div
+            style={{
+              ...anim(0.5),
+              display: "flex",
+              gap: "16px",
+              flexWrap: "wrap",
+              marginTop: "32px",
+            }}
+          >
+            <a
+              href="#projects"
+              style={{
+                padding: "14px 28px",
+                borderRadius: "999px",
+                background: COLORS.accent,
+                color: "#000",
+                fontWeight: 700,
+                textDecoration: "none",
+                fontSize: "15px",
+              }}
+            >
+              View Projects
+            </a>
+
+            <a
+              href="#contact"
+              style={{
+                padding: "14px 28px",
+                borderRadius: "999px",
+                border: `1px solid ${COLORS.accent}`,
+                color: COLORS.white,
+                textDecoration: "none",
+                fontWeight: 600,
+                fontSize: "15px",
+                backdropFilter: "blur(10px)",
+              }}
+            >
+              Contact Me
+            </a>
+          </div>
         </div>
 
+        {/* RIGHT IMAGE */}
         <div
-          className="hero-image-container"
+          className="hero-image"
           style={{
-            ...anim(0.4),
-            position: "relative",
-            flex: "0 0 55%",
+            ...anim(0.3, "translateY(20px)"),
+            flex: "1 1 450px",
+            minWidth: "280px",
             display: "flex",
             justifyContent: "center",
-            transform: "translateY(60px)",
+            alignItems: "flex-end",
+            position: "relative",
           }}
         >
-          {/* Subtle Glow behind image */}
+          {/* Image Glow */}
           <div
             style={{
               position: "absolute",
-              inset: "0",
-              background: `radial-gradient(circle, ${COLORS.accent}12 0%, transparent 70%)`,
-              filter: "blur(50px)",
+              width: "50%",
+              height: "50%",
+              borderRadius: "50%",
+              background: `${COLORS.accent}20`,
+              filter: "blur(80px)",
               zIndex: -1,
             }}
           />
-          <picture style={{ width: "100%", height: "auto" }}>
+
+          <picture
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <source media="(max-width: 768px)" srcSet={profileImgMobile} />
+
             <img
               src={profileImg}
-              alt="Sem Bunly profile picture"
+              alt="Sem Bunly"
               style={{
                 width: "100%",
+                maxWidth: "620px",
                 height: "auto",
                 objectFit: "contain",
-                filter: "drop-shadow(0 20px 40px rgba(70, 159, 144, 0.4))",
+                display: "block",
+                userSelect: "none",
+                pointerEvents: "none",
+                filter: "drop-shadow(0 25px 45px rgba(77,240,192,0.18))",
               }}
             />
           </picture>
         </div>
-      </div>
-
-      {/* Bottom Row */}
-      <div
-        className="hero-bottom"
-        style={{
-          position: "absolute",
-          bottom: 60,
-          left: "8%",
-          right: "8%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-        }}
-      >
-        <p
-          className="hero-desc"
-          style={{
-            ...anim(0.7),
-            maxWidth: 280,
-            fontFamily: "monospace",
-            fontSize: 12,
-            lineHeight: 1.8,
-            color: COLORS.muted,
-            textAlign: "left",
-          }}
-        >
-          Passionate about learning software development, focusing on both frontend and backend technologies.
-        </p>
       </div>
     </section>
   );
@@ -593,8 +880,8 @@ function Hero() {
 function About() {
   const stats = [
     { num: "3rd", label: "Year at BELTEI International University" },
-    // { num: 3, label: "Disciplines" },
-    // { icon: "all_inclusive", label: "Curiosity" },
+    { num: 3, label: "Disciplines" },
+    { icon: "all_inclusive", label: "Curiosity" },
     { num: "CAMBODIA", label: "Phnom Penh" },
   ];
   return (
