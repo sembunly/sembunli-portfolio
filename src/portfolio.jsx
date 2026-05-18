@@ -854,7 +854,6 @@ function Hero() {
             }}
           >
             <source media="(max-width: 768px)" srcSet={profileImgMobile} />
-
             <img
               src={profileImg}
               alt="Sem Bunly"
@@ -864,6 +863,7 @@ function Hero() {
                 height: "auto",
                 objectFit: "contain",
                 display: "block",
+                marginBottom: "-20px",
                 userSelect: "none",
                 pointerEvents: "none",
                 filter: "drop-shadow(0 25px 45px rgba(77,240,192,0.18))",
