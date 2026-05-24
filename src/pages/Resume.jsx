@@ -48,7 +48,7 @@ const Resume = () => {
                         boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                     }}
                 >
-                    Download PDF
+                    View full PDF
                 </a>
             </div>
             <div style={{ flexGrow: 1, width: '100%', height: '100%' }}>
