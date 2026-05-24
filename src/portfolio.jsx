@@ -801,22 +801,20 @@ function Hero() {
             >
               View Projects
             </a>
-
-            <a
-              href="#contact"
+            <Link
+              to="/resume"
               style={{
                 padding: "14px 28px",
                 borderRadius: "999px",
-                border: `1px solid ${COLORS.accent}`,
-                color: COLORS.white,
+                background: COLORS.accent,
+                color: "#000",
+                fontWeight: 700,
                 textDecoration: "none",
-                fontWeight: 600,
                 fontSize: "15px",
-                backdropFilter: "blur(10px)",
               }}
             >
-              Contact Me
-            </a>
+              View Resume
+            </Link>
           </div>
         </div>
 
