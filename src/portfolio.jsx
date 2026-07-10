@@ -918,7 +918,7 @@ function About() {
           }}
         >
           I'm a third-year Software Engineering student at Beltei International
-          University (BUI). I build scalable, user-focused web applications with
+          University (BIU). I build scalable, user-focused web applications with
           an emphasis on clean design and reliable systems.
         </p>
         <p
@@ -1760,8 +1760,8 @@ export default function Portfolio() {
           .skills-grid { grid-template-columns: 1fr !important; }
           .about-section { padding: 100px 24px !important; }
           .contact-section { padding: 0 24px 100px !important; }
-          
-          
+
+
         }
       `}</style>
       <Cursor mouseRef={mouseRef} />
