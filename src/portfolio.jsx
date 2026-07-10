@@ -82,7 +82,7 @@ const projects = [
     color: COLORS.accent3,
     img: fashtionImg,
     imgAlt: "UI design mockup on screen",
-    link: "https://seven8-shop.vercel.app/",
+    // link: "https://seven8-shop.vercel.app/",
   },
 ];
 
