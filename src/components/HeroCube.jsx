@@ -1,5 +1,5 @@
 import { memo, Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import {
   ContactShadows,
   Environment,
@@ -8,6 +8,28 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import CubeGroup from "../three/CubeGroup";
+
+const CAMERA_TARGET = new THREE.Vector3(0, -0.15, 0);
+const CAMERA_DISTANCE = 10.2;
+
+function CameraDistanceLock() {
+  useFrame(({ camera }) => {
+    const offset = camera.position.clone().sub(CAMERA_TARGET);
+
+    if (offset.lengthSq() < 0.0001) {
+      offset.set(5.6, 4.25, 7.4);
+    }
+
+    if (Math.abs(offset.length() - CAMERA_DISTANCE) > 0.001) {
+      camera.position
+        .copy(CAMERA_TARGET)
+        .add(offset.normalize().multiplyScalar(CAMERA_DISTANCE));
+      camera.updateMatrixWorld();
+    }
+  });
+
+  return null;
+}
 
 function SceneLighting() {
   return <ambientLight intensity={0.9} color="#fff7ed" />;
@@ -97,6 +119,8 @@ function HeroCube({
           <SceneLighting />
 
           <StudioEnvironment />
+
+          <CameraDistanceLock />
 
           <CubeGroup
             size={size}

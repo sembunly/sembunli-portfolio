@@ -74,7 +74,7 @@ const projects = [
     type: "PHP / Laravel",
     year: "2026",
     color: COLORS.accent2,
-    img: khqrImg,
+    img: paymentImg,
     imgAlt: "Laravel-KHQR-Payment Gateway",
     link: "https://github.com/sembunly/Laravel-KHQR-Payment",
   },
