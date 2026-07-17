@@ -5,7 +5,10 @@ import profileImgMobile from "./assets/me2.png";
 import calculatorImg from "./assets/calculator.png";
 import ecomImg from "./assets/ecom.jpg";
 import fashtionImg from "./assets/fashion-shopping.jpg";
+import uspImg from "./assets/usp.png";
+import paymentImg from "./assets/payment.jpg";
 import HeroCube from "./components/HeroCube";
+import NetworkBackground from "./components/NetworkBackground";
 
 
 const COLORS = {
@@ -23,18 +26,18 @@ const COLORS = {
 
 const skills = [
   {
+    icon: "⚙️",
+    title: "Backend Development",
+    desc: "Building scalable and efficient server-side applications, designing RESTful APIs, and managing databases.",
+    tags: ["Laravel", "REST API", "MySQL", "PHP","SQL Server","PostgreSQL"],
+    color: COLORS.accent2,
+  },
+  {
     icon: "💻",
     title: "Frontend Development",
     desc: "Building performant, pixel-perfect interfaces. Clean, maintainable code with thoughtful micro-interactions that elevate user experience.",
-    tags: ["HTML/CSS", "JavaScript", "React", "Tailwind"],
+    tags: ["HTML/CSS", "JavaScript", "React", "Tailwind","Bootstrap","jQuery"],
     color: COLORS.accent,
-  },
-  {
-    icon: "⚙️",
-    title: "Backend Development",
-    desc: "Building scalable and efficient server-side applications, designing RESTful APIs, and managing databases to support reliable systems.",
-    tags: ["Laravel", "REST API", "MySQL", "PHP"],
-    color: COLORS.accent2,
   },
   {
     icon: "📱",
@@ -43,29 +46,52 @@ const skills = [
     tags: ["Flutter", "Dart", "UI Widgets", "Mobile Apps"],
     color: COLORS.accent3,
   },
-  {
-    icon: "🔧",
-    title: "Tools",
-    desc: "Proficient in using various development tools and technologies to enhance productivity and code quality.",
-    tags: ["Git", "GitHub", "VS Code", "Visual Studio", "Postman"],
-    color: COLORS.accent,
-  },
+  // {
+  //   icon: "🔧",
+  //   title: "Tools",
+  //   desc: "Proficient in using various development tools and technologies to enhance productivity and code quality.",
+  //   tags: ["Git", "GitHub", "VS Code", "Visual Studio", "Postman"],
+  //   color: COLORS.accent,
+  // },
 ];
 
 const projects = [
   {
     num: "01",
-    name: "Calculator",
-    desc: "A mobile-style calculator built with React, featuring a phone-like UI and basic arithmetic operations.",
-    type: "JavaScript",
-    year: "2025",
+    name: "University Student Portal",
+    desc: "A comprehensive portal for students to manage their academic records, course schedules, and personal information.",
+    type: "PHP / Laravel / MySQL",
+    year: "2026",
     color: COLORS.accent,
-    img: calculatorImg,
-    imgAlt: "Calculator app UI",
-    path: "/project/calculator",
+    img: uspImg,
+    imgAlt: "University student portal",
+    link: "https://github.com/sembunly/university-student-portal",
   },
   {
     num: "02",
+    name: "Laravel-KHQR-Payment Gateway",
+    desc: "A Laravel package that integrates the KHQR Bakong payment gateway.",
+    type: "PHP / Laravel",
+    year: "2026",
+    color: COLORS.accent2,
+    img: khqrImg,
+    imgAlt: "Laravel-KHQR-Payment Gateway",
+    link: "https://github.com/sembunly/Laravel-KHQR-Payment",
+  },
+  // {
+  //   num: "03",
+  //   name: "Calculator",
+  //   desc: "A mobile-style calculator built with React, featuring a phone-like UI and basic arithmetic operations.",
+  //   type: "JavaScript",
+  //   year: "2025",
+  //   color: COLORS.accent,
+  //   img: calculatorImg,
+  //   imgAlt: "Calculator app UI",
+  //   link: "https://github.com/sembunly/calculator-app",
+  //   path: "/project/calculator",
+  // },
+  {
+    num: "04",
     name: "E-commerce Management System",
     desc: "A Laravel + MySQL based e-commerce management system with product CRUD, order processing, and admin dashboards.",
     type: "Laravel / MySQL",
@@ -73,19 +99,19 @@ const projects = [
     color: COLORS.accent2,
     img: ecomImg,
     imgAlt: "UI design mockup on screen",
-    link: "https://github.com/sembunly/laptop-store",
+    link: "https://github.com/sembunly/ems",
   },
-    {
-    num: "03",
-    name: "Fashtion E-commerce",
-    desc: "A modern e-commerce platform for fashion products, featuring a sleek design and seamless shopping experience.",
-    type: "React / Tailwind",
-    year: "2026",
-    color: COLORS.accent3,
-    img: fashtionImg,
-    imgAlt: "UI design mockup on screen",
-    // link: "https://seven8-shop.vercel.app/",
-  },
+  //   {
+  //   num: "03",
+  //   name: "Fashtion E-commerce",
+  //   desc: "A modern e-commerce platform for fashion products, featuring a sleek design and seamless shopping experience.",
+  //   type: "React / Tailwind",
+  //   year: "2026",
+  //   color: COLORS.accent3,
+  //   img: fashtionImg,
+  //   imgAlt: "UI design mockup on screen",
+  //   link: "https://seven8-shop.vercel.app/",
+  // },
 ];
 
 const contacts = [
@@ -426,7 +452,7 @@ function Marquee() {
           >
             <span
               style={{
-                fontFamily: "monospace",
+                fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "clamp(12px, 1vw, 14px)",
                 fontWeight: 700,
                 letterSpacing: "0.12em",
@@ -528,7 +554,7 @@ function Nav({ scrollY }) {
                 key={s}
                 href={`#${s}`}
                 style={{
-                  fontFamily: "monospace",
+                  fontFamily: "'JetBrains Mono', monospace",
                   fontSize: 12,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
@@ -694,23 +720,7 @@ function Hero() {
         background: COLORS.bg,
       }}
     >
-      {/* Grid Background */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(rgba(77,240,192,0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(77,240,192,0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
-          WebkitMaskImage:
-            "radial-gradient(circle at center, black 40%, transparent 100%)",
-          maskImage:
-            "radial-gradient(circle at center, black 40%, transparent 100%)",
-          zIndex: 0,
-        }}
-      />
+      <NetworkBackground />
 
       {/* Glow */}
       <div
@@ -931,7 +941,7 @@ function About() {
         </h2>
         <p
           style={{
-            fontFamily: "monospace",
+            fontFamily: "'JetBrains Mono', monospace",
             fontSize: 13,
             lineHeight: 1.9,
             color: COLORS.muted,
@@ -944,7 +954,7 @@ function About() {
         </p>
         <p
           style={{
-            fontFamily: "monospace",
+            fontFamily: "'JetBrains Mono', monospace",
             fontSize: 13,
             lineHeight: 1.9,
             color: COLORS.muted,
@@ -1005,7 +1015,7 @@ function StatCard({ num, icon, label }) {
       </div>
       <div
         style={{
-          fontFamily: "monospace",
+          fontFamily: "'JetBrains Mono', monospace",
           fontSize: 10,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
@@ -1097,7 +1107,7 @@ function SkillCard({ icon, title, desc, tags, color, delay }) {
         </div>
         <p
           style={{
-            fontFamily: "monospace",
+            fontFamily: "'JetBrains Mono', monospace",
             fontSize: 12,
             lineHeight: 1.85,
             color: COLORS.muted,
@@ -1111,7 +1121,7 @@ function SkillCard({ icon, title, desc, tags, color, delay }) {
             <span
               key={i}
               style={{
-                fontFamily: "monospace",
+                fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 10,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
@@ -1262,7 +1272,7 @@ function ProjectCard({
             position: "absolute",
             top: 16,
             right: 16,
-            fontFamily: "monospace",
+            fontFamily: "'JetBrains Mono', monospace",
             fontSize: 10,
             letterSpacing: "0.15em",
             textTransform: "uppercase",
@@ -1327,7 +1337,7 @@ function ProjectCard({
         </div>
         <p
           style={{
-            fontFamily: "monospace",
+            fontFamily: "'JetBrains Mono', monospace",
             fontSize: 12,
             color: COLORS.muted,
             lineHeight: 1.7,
@@ -1353,7 +1363,7 @@ function ProjectCard({
           />
           <span
             style={{
-              fontFamily: "monospace",
+              fontFamily: "'JetBrains Mono', monospace",
               fontSize: 11,
               color: COLORS.muted,
             }}
@@ -1484,7 +1494,7 @@ function ContactRow({ icon, label, value, href, target }) {
         <div>
           <div
             style={{
-              fontFamily: "monospace",
+              fontFamily: "'JetBrains Mono', monospace",
               fontSize: 10,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
@@ -1495,7 +1505,7 @@ function ContactRow({ icon, label, value, href, target }) {
           </div>
           <div
             style={{
-              fontFamily: "monospace",
+              fontFamily: "'JetBrains Mono', monospace",
               fontSize: 13,
               color: COLORS.white,
               marginTop: 3,
@@ -1525,7 +1535,7 @@ function SectionLabel({ children }) {
   return (
     <div
       style={{
-        fontFamily: "monospace",
+        fontFamily: "'JetBrains Mono', monospace",
         fontSize: 10,
         letterSpacing: "0.22em",
         textTransform: "uppercase",
@@ -1562,7 +1572,7 @@ function CtaButton({ href, children }) {
         gap: 10,
         background: hov ? COLORS.accent2 : COLORS.accent,
         color: COLORS.bg,
-        fontFamily: "monospace",
+        fontFamily: "'JetBrains Mono', monospace",
         fontSize: 11,
         letterSpacing: "0.16em",
         textTransform: "uppercase",
@@ -1607,7 +1617,7 @@ function Footer() {
       </div>
       <div
         style={{
-          fontFamily: "monospace",
+          fontFamily: "'JetBrains Mono', monospace",
           fontSize: 11,
           color: COLORS.muted,
           letterSpacing: "0.1em",
@@ -1748,10 +1758,10 @@ export default function Portfolio() {
         </div>
       )}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@1,400;1,700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         html{scroll-behavior:smooth;}
-        body{background:${COLORS.bg};color:${COLORS.text};cursor:none;overflow-x:hidden;}
+        body{background:${COLORS.bg};color:${COLORS.text};cursor:none;overflow-x:hidden;font-family:'JetBrains Mono',monospace;}
         body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.3;}
         a{cursor:none;}
         ::-webkit-scrollbar{width:4px;}
