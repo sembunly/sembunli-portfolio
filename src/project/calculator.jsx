@@ -167,7 +167,7 @@ export default function Calculator() {
         </div>
 
         <div className="credit">
-          Calculator built & designed by <strong>Sem Bunly</strong>
+          Calculator biult & designed by <strong>Sem Bunly</strong>
         </div>
 
         <div className="home-bar" />
