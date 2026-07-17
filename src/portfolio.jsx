@@ -5,6 +5,8 @@ import profileImgMobile from "./assets/me2.png";
 import calculatorImg from "./assets/calculator.png";
 import ecomImg from "./assets/ecom.jpg";
 import fashtionImg from "./assets/fashion-shopping.jpg";
+import HeroCube from "./components/HeroCube";
+
 
 const COLORS = {
   bg: "#000000",
@@ -818,7 +820,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* RIGHT IMAGE */}
+        {/* RIGHT: interactive 3D cube */}
         <div
           className="hero-image"
           style={{
@@ -843,8 +845,27 @@ function Hero() {
               zIndex: -1,
             }}
           />
+          <div
+            className="hero-cube-wrap"
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "clamp(420px, 48vw, 650px)",
+              minHeight: "420px",
+              overflow: "hidden",
+              borderRadius: "32px",
+            }}
+          >
+            <HeroCube
+              size={1.15}
+              autoRotate={true}
+              autoRotateSpeed={0.14}
+              floating={true}
+              backgroundColor="#030304"
+            />
+          </div>
 
-          <picture
+          {/* <picture
             style={{
               width: "100%",
               display: "flex",
@@ -867,7 +888,7 @@ function Hero() {
                 filter: "drop-shadow(0 25px 45px rgba(77,240,192,0.18))",
               }}
             />
-          </picture>
+          </picture> */}
         </div>
       </div>
     </section>
@@ -1753,6 +1774,8 @@ export default function Portfolio() {
           .nav-links { display: none !important; }
           .hero-content { flex-direction: column !important; text-align: center !important; }
           .hero-text { flex: none !important; margin-bottom: 40px !important; }
+          .hero-image { flex: none !important; width: 100% !important; }
+          .hero-cube-wrap { height: min(112vw, 520px) !important; min-height: 360px !important; }
           .hero-image-container { flex: none !important; width: 80% !important; transform: translateY(0) !important; }
           .hero-bottom { position: static !important; margin-top: 60px !important; padding: 0 !important; flex-direction: column !important; align-items: center !important; gap: 40px !important; }
           .hero-desc { text-align: center !important; max-width: 100% !important; }
