@@ -119,13 +119,12 @@ function HeroCube({
           <OrbitControls
             makeDefault
             enablePan={false}
-            enableZoom
+            enableZoom={false}
+            minDistance={10.2}
+            maxDistance={10.2}
             enableDamping
             dampingFactor={0.055}
             rotateSpeed={0.45}
-            zoomSpeed={0.65}
-            minDistance={6}
-            maxDistance={12}
             minPolarAngle={0.08}
             maxPolarAngle={Math.PI - 0.08}
             target={[0, -0.15, 0]}
