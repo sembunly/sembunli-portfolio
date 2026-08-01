@@ -557,7 +557,7 @@ function Nav({ scrollY }) {
             whiteSpace: "nowrap",
           }}
         >
-          SEM BUNLY - Backend Developer
+          SEM BUNLY
         </a>
 
         {/* Desktop Menu */}
