@@ -19,12 +19,11 @@ const Resume = () => {
             {/* Top Header Bar */}
             <div style={{
                 display: 'flex',
-                justifyContent: 'between',
+                justifyContent: 'space-between',
                 alignItems: 'center',
                 backgroundColor: '#1f2937',
                 padding: '12px 24px',
                 borderBottom: '1px solid #374151',
-                justifyContent: 'space-between'
             }}>
                 <div>
                     <h1 style={{ color: '#ffffff', margin: 0, fontSize: '1.25rem', fontWeight: 'bold' }}>

@@ -1,15 +1,12 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import profileImg from "./assets/me.png";
-import profileImgMobile from "./assets/me2.png";
-import calculatorImg from "./assets/calculator.png";
 import ecomImg from "./assets/ecom.jpg";
-import fashtionImg from "./assets/fashion-shopping.jpg";
-import uspImg from "./assets/usp.png";
+//import profileImgMobile from "./assets/me2.png";
+import profileImg from "./assets/me.png";
 import paymentImg from "./assets/payment.jpg";
-import HeroCube from "./components/HeroCube";
+import uspImg from "./assets/usp1.jpg";
+import AiChat from "./assets/vs-code-extension.jpg";
 import NetworkBackground from "./components/NetworkBackground";
-
 
 const COLORS = {
   bg: "#000000",
@@ -29,14 +26,29 @@ const skills = [
     icon: "⚙️",
     title: "Backend Development",
     desc: "Building scalable and efficient server-side applications, designing RESTful APIs, and managing databases.",
-    tags: ["Laravel", "REST API", "MySQL", "PHP","SQL Server","PostgreSQL"],
+    tags: [
+      "Laravel",
+      "PHP",
+      "CakePHP",
+      "REST API",
+      "MySQL",
+      "SQL Server",
+      "PostgreSQL",
+    ],
     color: COLORS.accent2,
   },
   {
     icon: "💻",
     title: "Frontend Development",
     desc: "Building performant, pixel-perfect interfaces. Clean, maintainable code with thoughtful micro-interactions that elevate user experience.",
-    tags: ["HTML/CSS", "JavaScript", "React", "Tailwind","Bootstrap","jQuery"],
+    tags: [
+      "HTML/CSS",
+      "JavaScript",
+      "React",
+      "Tailwind",
+      "Bootstrap",
+      "jQuery",
+    ],
     color: COLORS.accent,
   },
   {
@@ -90,17 +102,30 @@ const projects = [
   //   link: "https://github.com/sembunly/calculator-app",
   //   path: "/project/calculator",
   // },
+
   {
-    num: "04",
+    num: "03",
     name: "E-commerce Management System",
     desc: "A Laravel + MySQL based e-commerce management system with product CRUD, order processing, and admin dashboards.",
     type: "Laravel / MySQL",
     year: "2026",
-    color: COLORS.accent2,
+    color: COLORS.accent3,
     img: ecomImg,
     imgAlt: "UI design mockup on screen",
     link: "https://github.com/sembunly/ems",
   },
+  {
+    num: "04",
+    name: "VS Code Extension for AI Chat",
+    desc: "A VS Code extension that integrates with an AI chatbot for enhanced coding assistance.",
+    type: "JavaScript / TypeScript",
+    year: "2026",
+    color: COLORS.accent,
+    img: AiChat,
+    imgAlt: "UI design mockup on screen",
+    link: "https://github.com/sembunly/vscode-ai-chat-extension",
+  },
+
   //   {
   //   num: "03",
   //   name: "Fashtion E-commerce",
@@ -321,7 +346,7 @@ function Counter({ target, suffix = "" }) {
   useEffect(() => {
     if (!inView) return;
     if (isNaN(target)) {
-      setVal(target);
+      //setVal(target);
       return;
     }
     let start = 0;
@@ -452,7 +477,7 @@ function Marquee() {
           >
             <span
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'Nunito', sans-serif",
                 fontSize: "clamp(12px, 1vw, 14px)",
                 fontWeight: 700,
                 letterSpacing: "0.12em",
@@ -512,14 +537,10 @@ function Nav({ scrollY }) {
           alignItems: "center",
           justifyContent: "space-between",
           padding: isMobile ? "18px 20px" : "22px 56px",
-          borderBottom: `1px solid ${
-            scrolled ? COLORS.border : "transparent"
-          }`,
+          borderBottom: `1px solid ${scrolled ? COLORS.border : "transparent"}`,
           backdropFilter: scrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          background: scrolled
-            ? "rgba(5,8,22,0.88)"
-            : "rgba(5,8,22,0.2)",
+          background: scrolled ? "rgba(5,8,22,0.88)" : "rgba(5,8,22,0.2)",
           transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
           transform: isHidden ? "translateY(-100%)" : "translateY(0)",
         }}
@@ -528,7 +549,7 @@ function Nav({ scrollY }) {
         <a
           href="#home"
           style={{
-            fontFamily: "'Bebas Neue', sans-serif",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: isMobile ? 24 : 28,
             letterSpacing: "0.12em",
             color: COLORS.accent,
@@ -536,7 +557,7 @@ function Nav({ scrollY }) {
             whiteSpace: "nowrap",
           }}
         >
-          SEM BUNLY
+          SEM BUNLY - Backend Developer
         </a>
 
         {/* Desktop Menu */}
@@ -554,7 +575,7 @@ function Nav({ scrollY }) {
                 key={s}
                 href={`#${s}`}
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'Nunito', sans-serif",
                   fontSize: 12,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
@@ -666,11 +687,9 @@ function Nav({ scrollY }) {
                 fontSize: 28,
                 textTransform: "uppercase",
                 letterSpacing: "0.15em",
-                fontFamily: "'Bebas Neue', sans-serif",
+                fontFamily: "'Nunito', sans-serif",
                 opacity: menuOpen ? 1 : 0,
-                transform: menuOpen
-                  ? "translateY(0)"
-                  : "translateY(20px)",
+                transform: menuOpen ? "translateY(0)" : "translateY(20px)",
                 transition: `all 0.5s ${i * 0.08}s ease`,
               }}
             >
@@ -714,7 +733,7 @@ function Hero() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "120px 6% 40px",
+        padding: "80px 6% 40px",
         position: "relative",
         overflow: "hidden",
         background: COLORS.bg,
@@ -762,7 +781,7 @@ function Hero() {
           <h1
             style={{
               ...anim(0.2),
-              fontFamily: "'Bebas Neue', sans-serif",
+              fontFamily: "'Nunito', sans-serif",
               fontSize: "clamp(70px, 15vw, 180px)",
               lineHeight: 0.85,
               letterSpacing: "-0.01em",
@@ -866,12 +885,36 @@ function Hero() {
               borderRadius: "32px",
             }}
           >
-            <HeroCube
-              size={1.15}
+            {/* <HeroCube
+              size={1.1}
               autoRotate={true}
-              autoRotateSpeed={0.14}
+              autoRotateSpeed={0.1}
               floating={true}
               backgroundColor="#030304"
+              style={{
+                opacity: 0.9,
+                transform: "scale(0.92) translateY(10px)",
+                pointerEvents: "none",
+              }}
+            /> */}
+            <img
+              src={profileImg}
+              alt="Sem Bunly"
+              style={{
+                position: "absolute",
+                left: "50%",
+                bottom: "-4px",
+                transform: "translateX(-50%)",
+                width: "min(96%, 980px)",
+                maxHeight: "100%",
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
+                zIndex: 2,
+                userSelect: "none",
+                pointerEvents: "none",
+                filter: "drop-shadow(0 25px 45px rgba(19, 60, 48, 0.18))",
+              }}
             />
           </div>
 
@@ -929,7 +972,7 @@ function About() {
         <SectionLabel>About Me</SectionLabel>
         <h2
           style={{
-            fontFamily: "Georgia, serif",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: "clamp(34px,3.5vw,52px)",
             lineHeight: 1.1,
             color: COLORS.white,
@@ -941,7 +984,7 @@ function About() {
         </h2>
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: 13,
             lineHeight: 1.9,
             color: COLORS.muted,
@@ -954,7 +997,7 @@ function About() {
         </p>
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: 13,
             lineHeight: 1.9,
             color: COLORS.muted,
@@ -996,7 +1039,7 @@ function StatCard({ num, icon, label }) {
     >
       <div
         style={{
-          fontFamily: "'Bebas Neue', sans-serif",
+          fontFamily: "'Nunito', sans-serif",
           fontSize: 52,
           color: COLORS.accent,
           lineHeight: 1,
@@ -1015,7 +1058,7 @@ function StatCard({ num, icon, label }) {
       </div>
       <div
         style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'Nunito', sans-serif",
           fontSize: 10,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
@@ -1040,7 +1083,7 @@ function Skills() {
       <Reveal>
         <h2
           style={{
-            fontFamily: "'Bebas Neue', sans-serif",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: "clamp(52px,7vw,100px)",
             lineHeight: 1,
             color: COLORS.white,
@@ -1096,7 +1139,7 @@ function SkillCard({ icon, title, desc, tags, color, delay }) {
         <div style={{ fontSize: 34, marginBottom: 18, color }}>{icon}</div>
         <div
           style={{
-            fontFamily: "'Bebas Neue', sans-serif",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: 28,
             letterSpacing: "0.04em",
             color: COLORS.white,
@@ -1107,7 +1150,7 @@ function SkillCard({ icon, title, desc, tags, color, delay }) {
         </div>
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: 12,
             lineHeight: 1.85,
             color: COLORS.muted,
@@ -1121,7 +1164,7 @@ function SkillCard({ icon, title, desc, tags, color, delay }) {
             <span
               key={i}
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'Nunito', sans-serif",
                 fontSize: 10,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
@@ -1152,7 +1195,7 @@ function Projects() {
         <SectionLabel>Work</SectionLabel>
         <h2
           style={{
-            fontFamily: "'Bebas Neue', sans-serif",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: "clamp(52px,7vw,100px)",
             lineHeight: 1,
             color: COLORS.white,
@@ -1272,7 +1315,7 @@ function ProjectCard({
             position: "absolute",
             top: 16,
             right: 16,
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: 10,
             letterSpacing: "0.15em",
             textTransform: "uppercase",
@@ -1291,7 +1334,7 @@ function ProjectCard({
             position: "absolute",
             top: 16,
             left: 16,
-            fontFamily: "'Bebas Neue', sans-serif",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: 15,
             letterSpacing: "0.1em",
             color: COLORS.muted,
@@ -1314,7 +1357,7 @@ function ProjectCard({
         >
           <div
             style={{
-              fontFamily: "Georgia, serif",
+              fontFamily: "'Nunito', sans-serif",
               fontSize: 19,
               color: COLORS.white,
               lineHeight: 1.25,
@@ -1337,7 +1380,7 @@ function ProjectCard({
         </div>
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: 12,
             color: COLORS.muted,
             lineHeight: 1.7,
@@ -1363,7 +1406,7 @@ function ProjectCard({
           />
           <span
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'Nunito', sans-serif",
               fontSize: 11,
               color: COLORS.muted,
             }}
@@ -1430,7 +1473,7 @@ function Contact() {
         <SectionLabel>Contact</SectionLabel>
         <h2
           style={{
-            fontFamily: "'Bebas Neue', sans-serif",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: "clamp(64px,9vw,120px)",
             lineHeight: 0.88,
             color: COLORS.white,
@@ -1442,7 +1485,7 @@ function Contact() {
         </h2>
         <p
           style={{
-            fontFamily: "Georgia, serif",
+            fontFamily: "'Nunito', sans-serif",
             fontStyle: "italic",
             fontSize: 18,
             color: COLORS.muted,
@@ -1494,7 +1537,7 @@ function ContactRow({ icon, label, value, href, target }) {
         <div>
           <div
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'Nunito', sans-serif",
               fontSize: 10,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
@@ -1505,7 +1548,7 @@ function ContactRow({ icon, label, value, href, target }) {
           </div>
           <div
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'Nunito', sans-serif",
               fontSize: 13,
               color: COLORS.white,
               marginTop: 3,
@@ -1535,7 +1578,7 @@ function SectionLabel({ children }) {
   return (
     <div
       style={{
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Nunito', sans-serif",
         fontSize: 10,
         letterSpacing: "0.22em",
         textTransform: "uppercase",
@@ -1572,7 +1615,7 @@ function CtaButton({ href, children }) {
         gap: 10,
         background: hov ? COLORS.accent2 : COLORS.accent,
         color: COLORS.bg,
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Nunito', sans-serif",
         fontSize: 11,
         letterSpacing: "0.16em",
         textTransform: "uppercase",
@@ -1607,7 +1650,7 @@ function Footer() {
     >
       <div
         style={{
-          fontFamily: "'Bebas Neue', sans-serif",
+          fontFamily: "'Nunito', sans-serif",
           fontSize: 17,
           letterSpacing: "0.1em",
           color: COLORS.muted,
@@ -1617,7 +1660,7 @@ function Footer() {
       </div>
       <div
         style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'Nunito', sans-serif",
           fontSize: 11,
           color: COLORS.muted,
           letterSpacing: "0.1em",
@@ -1758,10 +1801,10 @@ export default function Portfolio() {
         </div>
       )}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         html{scroll-behavior:smooth;}
-        body{background:${COLORS.bg};color:${COLORS.text};cursor:none;overflow-x:hidden;font-family:'JetBrains Mono',monospace;}
+        body{background:${COLORS.bg};color:${COLORS.text};cursor:none;overflow-x:hidden;font-family:'Nunito',sans-serif;}
         body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.3;}
         a{cursor:none;}
         ::-webkit-scrollbar{width:4px;}
