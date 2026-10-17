@@ -6,6 +6,8 @@ import profileImg from "./assets/me.png";
 import paymentImg from "./assets/payment.jpg";
 import uspImg from "./assets/usp1.jpg";
 import AiChat from "./assets/vs-code-extension.jpg";
+import classFeedbackImg from "./assets/biu-se/class-feedback.jpg";
+import tripImg from "./assets/biu-se/trip.jpg";
 import NetworkBackground from "./components/NetworkBackground";
 
 const COLORS = {
@@ -148,6 +150,29 @@ const projects = [
   //   imgAlt: "UI design mockup on screen",
   //   link: "https://seven8-shop.vercel.app/",
   // },
+];
+
+const university = [
+  {
+    num: "01",
+    name: "Class Feedback Session",
+    desc: "Presenting work and receiving feedback during a university classroom session.",
+    type: "Academic Activity",
+    year: "2026",
+    color: COLORS.accent,
+    img: classFeedbackImg,
+    imgAlt: "University class feedback session",
+  },
+  {
+    num: "02",
+    name: "University Field Trip",
+    desc: "A group learning experience with classmates and university faculty.",
+    type: "Student Activity",
+    year: "2024",
+    color: COLORS.accent2,
+    img: tripImg,
+    imgAlt: "University field trip group photo",
+  },
 ];
 
 const contacts = [
@@ -1109,6 +1134,40 @@ function SkillCard({ icon, title, desc, tags, color, delay }) {
   );
 }
 
+/* ── University ── */
+function University() {
+  return (
+    <section
+      id="university"
+      className="section-padding"
+      style={{ padding: "0 56px 140px" }}
+    >
+      <Reveal>
+        <SectionLabel>Education</SectionLabel>
+        <h2
+          style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontSize: "clamp(52px,7vw,100px)",
+            lineHeight: 1,
+            color: COLORS.white,
+            marginBottom: 60,
+          }}
+        >
+          <span style={{ color: COLORS.accent }}>University</span>
+        </h2>
+      </Reveal>
+      <div
+        className="projects-grid"
+        style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}
+      >
+        {university.map((item, i) => (
+          <ProjectCard key={item.num} {...item} delay={i * 0.1} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 /* ── Projects ── */
 function Projects() {
   return (
@@ -1764,6 +1823,8 @@ export default function Portfolio() {
       <About />
       <Divider />
       <Skills />
+      <Divider />
+      <University />
       <Divider />
       <Projects />
       <Divider />
