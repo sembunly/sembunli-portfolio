@@ -30,10 +30,13 @@ const skills = [
       "Laravel",
       "PHP",
       "CakePHP",
+      "Spring",
       "REST API",
       "MySQL",
       "SQL Server",
       "PostgreSQL",
+      "Oracle DB",
+      "Express.js",
     ],
     color: COLORS.accent2,
   },
@@ -55,7 +58,15 @@ const skills = [
     icon: "📱",
     title: "Mobile Development",
     desc: "Developing cross-platform mobile applications using Flutter, focusing on responsive UI, navigation, and basic app functionality.",
-    tags: ["Flutter", "Dart", "UI Widgets", "Mobile Apps"],
+    tags: [
+      "Flutter",
+      "Dart",
+      "GetX",
+      "Dio",
+      "HTTP",
+      "UI Widgets",
+      "Mobile Apps",
+    ],
     color: COLORS.accent3,
   },
   // {
@@ -171,19 +182,6 @@ const contacts = [
 ];
 
 /* ── Hooks ── */
-// Ref-based mouse position — zero re-renders, RAF-driven DOM updates only
-function useMousePosition() {
-  const posRef = useRef({ x: -100, y: -100 });
-  useEffect(() => {
-    const h = (e) => {
-      posRef.current = { x: e.clientX, y: e.clientY };
-    };
-    window.addEventListener("mousemove", h, { passive: true });
-    return () => window.removeEventListener("mousemove", h);
-  }, []);
-  return posRef; // consumers read posRef.current inside RAF loops
-}
-
 function useScrollY() {
   const [y, setY] = useState(0);
   useEffect(() => {
@@ -241,86 +239,6 @@ function useIsMobile() {
   return isMobile;
 }
 
-/* ── Cursor ── */
-function Cursor({ mouseRef }) {
-  const dotEl = useRef(null);
-  const ringEl = useRef(null);
-  const ring = useRef({ x: -100, y: -100 });
-  const [hovered, setHovered] = useState(false);
-  const rafRef = useRef();
-
-  useEffect(() => {
-    const handleMouseOver = (e) => {
-      const isInteractive = !!e.target.closest(
-        'a, button, [role="button"], .interactive, [onmouseenter]',
-      );
-      setHovered(isInteractive);
-    };
-    window.addEventListener("mouseover", handleMouseOver);
-    return () => window.removeEventListener("mouseover", handleMouseOver);
-  }, []);
-
-  useEffect(() => {
-    const animate = () => {
-      const { x, y } = mouseRef.current;
-      // dot snaps instantly
-      if (dotEl.current) {
-        dotEl.current.style.left = x + "px";
-        dotEl.current.style.top = y + "px";
-      }
-      // ring lags behind smoothly
-      ring.current.x += (x - ring.current.x) * 0.1;
-      ring.current.y += (y - ring.current.y) * 0.1;
-      if (ringEl.current) {
-        ringEl.current.style.left = ring.current.x + "px";
-        ringEl.current.style.top = ring.current.y + "px";
-      }
-      rafRef.current = requestAnimationFrame(animate);
-    };
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [mouseRef]);
-
-  return (
-    <>
-      <div
-        ref={dotEl}
-        className="cursor-el"
-        style={{
-          position: "fixed",
-          width: 8,
-          height: 8,
-          background: COLORS.accent,
-          borderRadius: "50%",
-          pointerEvents: "none",
-          zIndex: 9999,
-          transform: `translate(-50%,-50%) scale(${hovered ? 0 : 1})`,
-          opacity: hovered ? 0 : 1,
-          mixBlendMode: "difference",
-          transition: "transform 0.3s ease, opacity 0.3s ease",
-        }}
-      />
-      <div
-        ref={ringEl}
-        className="cursor-el"
-        style={{
-          position: "fixed",
-          width: 32,
-          height: 32,
-          border: `1px solid ${COLORS.accent}`,
-          borderRadius: "50%",
-          pointerEvents: "none",
-          zIndex: 9998,
-          transform: `translate(-50%,-50%) scale(${hovered ? 2.5 : 1})`,
-          opacity: hovered ? 0.2 : 0.45,
-          transition:
-            "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease",
-        }}
-      />
-    </>
-  );
-}
-
 /* ── FadeIn wrapper ── */
 function Reveal({ children, delay = 0, style = {} }) {
   const [ref, inView] = useInView();
@@ -374,13 +292,21 @@ function Marquee() {
     "JavaScript",
     "Laravel",
     "REST API",
-    "MSSQL",
+    "SQL Server",
     "MySQL",
     "Git",
     "GitHub",
     "GitLab",
     "Postman",
     "Visual Studio",
+    "Java",
+    "Spring Boot",
+    "IntelliJ IDEA",
+    "Android Studio",
+    "Flutter",
+    "Dart",
+    "Oracle",
+    "PostgreSQL",
   ];
 
   const doubled = [...items, ...items];
@@ -1267,7 +1193,6 @@ function ProjectCard({
         overflow: "hidden",
         position: "relative",
         transition: "border-color 0.4s",
-        cursor: "none",
         height: "100%",
       }}
     >
@@ -1436,7 +1361,7 @@ function ProjectCard({
   return (
     <Reveal delay={delay}>
       {path ? (
-        <Link to={path} style={{ textDecoration: "none", cursor: "none" }}>
+        <Link to={path} style={{ textDecoration: "none" }}>
           {CardContent}
         </Link>
       ) : link ? (
@@ -1674,7 +1599,6 @@ function Footer() {
 
 /* ── Root ── */
 export default function Portfolio() {
-  const mouseRef = useMousePosition(); // ref, not state — no re-renders
   const scrollY = useScrollY();
   const [fullscreenData, setFullscreenData] = useState(null);
 
@@ -1725,7 +1649,6 @@ export default function Portfolio() {
               background: "none",
               border: "none",
               color: COLORS.white,
-              cursor: "none",
               zIndex: 1001,
             }}
           >
@@ -1752,7 +1675,6 @@ export default function Portfolio() {
                 background: "none",
                 border: "none",
                 color: COLORS.white,
-                cursor: "none",
                 zIndex: 1001,
               }}
             >
@@ -1780,7 +1702,6 @@ export default function Portfolio() {
                 background: "none",
                 border: "none",
                 color: COLORS.white,
-                cursor: "none",
                 zIndex: 1001,
               }}
             >
@@ -1804,9 +1725,8 @@ export default function Portfolio() {
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         html{scroll-behavior:smooth;}
-        body{background:${COLORS.bg};color:${COLORS.text};cursor:none;overflow-x:hidden;font-family:'Nunito',sans-serif;}
+        body{background:${COLORS.bg};color:${COLORS.text};overflow-x:hidden;font-family:'Nunito',sans-serif;}
         body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.3;}
-        a{cursor:none;}
         ::-webkit-scrollbar{width:4px;}
         ::-webkit-scrollbar-track{background:${COLORS.bg};}
         ::-webkit-scrollbar-thumb{background:${COLORS.border};}
@@ -1821,8 +1741,6 @@ export default function Portfolio() {
         }
 
         @media (max-width: 768px) {
-          body { cursor: default !important; }
-          .cursor-el { display: none !important; }
           .nav-container { padding: 16px 24px !important; }
           .nav-links { display: none !important; }
           .hero-content { flex-direction: column !important; text-align: center !important; }
@@ -1840,7 +1758,6 @@ export default function Portfolio() {
 
         }
       `}</style>
-      <Cursor mouseRef={mouseRef} />
       <Nav scrollY={scrollY} />
       <Hero />
       <Marquee />
