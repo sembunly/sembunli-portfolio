@@ -1,0 +1,16 @@
+:root {
+  --color-bg: #000000;
+  --color-surface: #080808;
+  --color-card: #0d0d0d;
+  --color-border: #1a1a1a;
+  --color-accent: #4df0c0;
+  --color-accent2: #4db8f0;
+  --color-accent3: #f0c04d;
+  --color-text: #dce4f0;
+  --color-muted: #5a6478;
+  --color-white: #f0f4ff;
+  --calendar-cell: 11px;
+  --calendar-gap: 4px;
+  --font-body: 'Nunito', sans-serif;
+  --font-heading: 'Nunito', sans-serif;
+}
