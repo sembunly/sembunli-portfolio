@@ -9,6 +9,14 @@ import AiChat from "./assets/vs-code-extension.jpg";
 import classFeedbackImg from "./assets/biu-se/class-feedback.jpg";
 import tripImg from "./assets/biu-se/trip.jpg";
 import NetworkBackground from "./components/NetworkBackground";
+import { FaCode, FaDatabase, FaLayerGroup, FaTools } from "react-icons/fa";
+import { TbBrandCSharp } from "react-icons/tb";
+import {
+  SiAndroidstudio, SiC, SiCakephp, SiCplusplus, SiCss, SiDart,
+  SiExpress, SiFlutter, SiGit, SiGithub, SiGitlab, SiHtml5, SiIntellijidea,
+  SiJavascript, SiLaravel, SiMysql, SiOpenjdk, SiPhp, SiPostgresql,
+  SiPostman, SiReact, SiSpringboot, SiTailwindcss,
+} from "react-icons/si";
 
 const COLORS = {
   bg: "#000000",
@@ -23,61 +31,43 @@ const COLORS = {
   white: "#f0f4ff",
 };
 
-const skills = [
+const skillGroups = [
   {
-    icon: "⚙️",
-    title: "Backend Development",
-    desc: "Building scalable and efficient server-side applications, designing RESTful APIs, and managing databases.",
-    tags: [
-      "Laravel",
-      "PHP",
-      "CakePHP",
-      "Spring",
-      "REST API",
-      "MySQL",
-      "SQL Server",
-      "PostgreSQL",
-      "Oracle DB",
-      "Express.js",
+    title: "Programming",
+    icon: FaCode,
+    description: "Programming languages I use to solve problems and build applications.",
+    items: [
+      ["C", SiC, "#a8b9cc"], ["C++", SiCplusplus, "#659ad2"],
+      ["C#", TbBrandCSharp, "#9b4f96"], ["Java", SiOpenjdk, "#f89820"],
+      ["JavaScript", SiJavascript, "#f7df1e"], ["PHP", SiPhp, "#777bb4"],
+      ["Dart", SiDart, "#0175c2"],
     ],
-    color: COLORS.accent2,
   },
   {
-    icon: "💻",
-    title: "Frontend Development",
-    desc: "Building performant, pixel-perfect interfaces. Clean, maintainable code with thoughtful micro-interactions that elevate user experience.",
-    tags: [
-      "HTML/CSS",
-      "JavaScript",
-      "React",
-      "Tailwind",
-      "Bootstrap",
-      "jQuery",
+    title: "FullStack Development",
+    icon: FaLayerGroup,
+    description: "Frameworks and databases for building complete applications.",
+    items: [
+      ["Laravel", SiLaravel, "#ff2d20"], ["CakePHP", SiCakephp, "#d33c43"],
+      ["Spring Boot", SiSpringboot, "#6db33f"], ["Express.js", SiExpress, "#f0f4ff"],
+      ["React", SiReact, "#61dafb"], ["Flutter", SiFlutter, "#54c5f8"],
+      ["HTML", SiHtml5, "#e34f26"], ["CSS", SiCss, "#1572b6"],
+      ["Tailwind CSS", SiTailwindcss, "#38bdf8"], ["MySQL", SiMysql, "#4479a1"],
+      ["SQL Server", FaDatabase, "#cc2927"], ["PostgreSQL", SiPostgresql, "#4169e1"],
+      ["Oracle", FaDatabase, "#f80000"],
     ],
-    color: COLORS.accent,
   },
   {
-    icon: "📱",
-    title: "Mobile Development",
-    desc: "Developing cross-platform mobile applications using Flutter, focusing on responsive UI, navigation, and basic app functionality.",
-    tags: [
-      "Flutter",
-      "Dart",
-      "GetX",
-      "Dio",
-      "HTTP",
-      "UI Widgets",
-      "Mobile Apps",
+    title: "Tools",
+    icon: FaTools,
+    description: "Tools I use for development, version control, and testing.",
+    items: [
+      ["Git", SiGit, "#f05032"], ["GitHub", SiGithub, "#f0f4ff"],
+      ["GitLab", SiGitlab, "#fc6d26"], ["VS Code", FaCode, "#22a7f2"],
+      ["Visual Studio", FaCode, "#a179dc"], ["Postman", SiPostman, "#ff6c37"],
+      ["IntelliJ IDEA", SiIntellijidea, "#f24e1e"], ["Android Studio", SiAndroidstudio, "#3ddc84"],
     ],
-    color: COLORS.accent3,
   },
-  // {
-  //   icon: "🔧",
-  //   title: "Tools",
-  //   desc: "Proficient in using various development tools and technologies to enhance productivity and code quality.",
-  //   tags: ["Git", "GitHub", "VS Code", "Visual Studio", "Postman"],
-  //   color: COLORS.accent,
-  // },
 ];
 
 const projects = [
@@ -310,29 +300,9 @@ function Counter({ target, suffix = "" }) {
 
 /* ── Marquee ── */
 function Marquee() {
-  const items = [
-    "C#",
-    "C++",
-    "PHP",
-    "JavaScript",
-    "Laravel",
-    "REST API",
-    "SQL Server",
-    "MySQL",
-    "Git",
-    "GitHub",
-    "GitLab",
-    "Postman",
-    "Visual Studio",
-    "Java",
-    "Spring Boot",
-    "IntelliJ IDEA",
-    "Android Studio",
-    "Flutter",
-    "Dart",
-    "Oracle",
-    "PostgreSQL",
-  ];
+  const items = skillGroups.flatMap(({ items: groupItems }) =>
+    groupItems.map(([name, Icon, color]) => ({ name, Icon, color })),
+  );
 
   const doubled = [...items, ...items];
 
@@ -415,39 +385,27 @@ function Marquee() {
       />
 
       <div className="marquee-track">
-        {doubled.map((item, i) => (
+        {doubled.map(({ name, Icon, color }, i) => (
           <div
             key={i}
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "26px",
+              gap: "22px",
               padding: "0 28px",
               flexShrink: 0,
             }}
           >
-            <span
+            <Icon
+              title={name}
+              aria-label={name}
               style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontSize: "clamp(12px, 1vw, 14px)",
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                color: COLORS.muted,
-                textTransform: "uppercase",
+                fontSize: 26,
+                color,
+                flexShrink: 0,
               }}
-            >
-              {item}
-            </span>
+            />
 
-            <span
-              style={{
-                color: COLORS.accent,
-                fontSize: 16,
-                opacity: 0.9,
-              }}
-            >
-              ✦
-            </span>
           </div>
         ))}
       </div>
@@ -458,6 +416,7 @@ function Marquee() {
 /* ── Nav ── */
 function Nav({ scrollY }) {
   const sections = ["about", "skills", "projects", "contact"];
+  const desktopSections = sections.filter((section) => section !== "contact");
   const dir = useScrollDirection();
   const isMobile = useIsMobile();
 
@@ -480,20 +439,22 @@ function Nav({ scrollY }) {
         className="nav-container"
         style={{
           position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
+          top: isMobile ? 12 : 18,
+          left: "50%",
+          width: isMobile ? "calc(100% - 28px)" : "min(1120px, calc(100% - 56px))",
           zIndex: 1000,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: isMobile ? "18px 20px" : "22px 56px",
-          borderBottom: `1px solid ${scrolled ? COLORS.border : "transparent"}`,
-          backdropFilter: scrolled ? "blur(20px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          background: scrolled ? "rgba(5,8,22,0.88)" : "rgba(5,8,22,0.2)",
+          padding: isMobile ? "9px 10px 9px 18px" : "9px 10px 9px 22px",
+          border: `1px solid ${scrolled ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.1)"}`,
+          borderRadius: 999,
+          backdropFilter: "blur(22px)",
+          WebkitBackdropFilter: "blur(22px)",
+          background: scrolled ? "rgba(5,8,22,0.94)" : "rgba(5,8,22,0.78)",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.22)",
           transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-          transform: isHidden ? "translateY(-100%)" : "translateY(0)",
+          transform: `translateX(-50%) ${isHidden ? "translateY(-160%)" : "translateY(0)"}`,
         }}
       >
         {/* Logo */}
@@ -501,8 +462,9 @@ function Nav({ scrollY }) {
           href="#home"
           style={{
             fontFamily: "'Nunito', sans-serif",
-            fontSize: isMobile ? 24 : 28,
-            letterSpacing: "0.12em",
+            fontSize: isMobile ? 15 : 16,
+            fontWeight: 900,
+            letterSpacing: "0.11em",
             color: COLORS.accent,
             textDecoration: "none",
             whiteSpace: "nowrap",
@@ -518,35 +480,64 @@ function Nav({ scrollY }) {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 36,
+              gap: 4,
+              padding: "0 10px",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: 999,
+              background: "rgba(255,255,255,0.035)",
             }}
           >
-            {sections.map((s) => (
+            {desktopSections.map((s) => (
               <a
                 key={s}
                 href={`#${s}`}
                 style={{
                   fontFamily: "'Nunito', sans-serif",
-                  fontSize: 12,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: COLORS.muted,
+                  fontSize: 13,
+                  fontWeight: 700,
+                  letterSpacing: "0.01em",
+                  textTransform: "capitalize",
+                  color: COLORS.white,
                   textDecoration: "none",
                   transition: "0.25s ease",
+                  padding: "11px 16px",
+                  borderRadius: 999,
                 }}
                 onMouseEnter={(e) => {
                   e.target.style.color = COLORS.accent;
-                  e.target.style.transform = "translateY(-2px)";
+                  e.target.style.background = "rgba(255,255,255,0.08)";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = COLORS.muted;
-                  e.target.style.transform = "translateY(0)";
+                  e.target.style.color = COLORS.white;
+                  e.target.style.background = "transparent";
                 }}
               >
                 {s}
               </a>
             ))}
           </div>
+        )}
+
+        {!isMobile && (
+          <a
+            href="#contact"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "12px 18px",
+              borderRadius: 999,
+              background: COLORS.accent,
+              color: "#03110e",
+              textDecoration: "none",
+              fontFamily: "'Nunito', sans-serif",
+              fontWeight: 900,
+              fontSize: 13,
+              whiteSpace: "nowrap",
+            }}
+          >
+            Contact <span aria-hidden="true">↗</span>
+          </a>
         )}
 
         {/* Mobile Button */}
@@ -624,6 +615,7 @@ function Nav({ scrollY }) {
             justifyContent: "center",
             alignItems: "center",
             gap: 32,
+            paddingTop: 90,
             transition: "0.45s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
@@ -679,15 +671,15 @@ function Hero() {
     <section
       id="home"
       style={{
-        minHeight: "100vh",
+        minHeight: "min(900px, 100svh)",
         width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "80px 6% 40px",
+        padding: "112px clamp(24px, 7vw, 104px) 56px",
         position: "relative",
         overflow: "hidden",
-        background: COLORS.bg,
+        background: "radial-gradient(ellipse at 77% 48%, rgba(77,240,192,0.07), transparent 38%), #050816",
       }}
     >
       <NetworkBackground />
@@ -696,10 +688,10 @@ function Hero() {
       <div
         style={{
           position: "absolute",
-          width: "500px",
-          height: "500px",
+          width: "580px",
+          height: "580px",
           borderRadius: "50%",
-          background: `${COLORS.accent}10`,
+          background: `${COLORS.accent}0a`,
           filter: "blur(100px)",
           top: "10%",
           right: "-100px",
@@ -725,19 +717,25 @@ function Hero() {
         <div
           className="hero-text"
           style={{
-            flex: "1 1 500px",
+          flex: "1 1 540px",
             minWidth: "280px",
+          paddingBottom: "24px",
           }}
         >
+          <div style={{ ...anim(0.1), display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 26, color: COLORS.accent, fontSize: 12, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: COLORS.accent, boxShadow: `0 0 14px ${COLORS.accent}` }} />
+            Backend developer · Phnom Penh, Cambodia
+          </div>
           <h1
             style={{
               ...anim(0.2),
               fontFamily: "'Nunito', sans-serif",
-              fontSize: "clamp(70px, 15vw, 180px)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.01em",
+              fontSize: "clamp(76px, 11.4vw, 154px)",
+              lineHeight: 0.82,
+              letterSpacing: "-0.075em",
               margin: 0,
               textTransform: "uppercase",
+              fontWeight: 800,
             }}
           >
             <span style={{ color: COLORS.white }}>Sem</span>
@@ -748,64 +746,67 @@ function Hero() {
           <p
             style={{
               ...anim(0.35),
-              marginTop: "18px",
-              color: COLORS.muted,
-              fontSize: "clamp(16px, 2vw, 28px)",
-              lineHeight: 1.6,
-              maxWidth: "650px",
-              fontWeight: 400,
-              letterSpacing: "0.02em",
+              marginTop: "28px",
+              color: COLORS.white,
+              fontSize: "clamp(19px, 2.1vw, 27px)",
+              lineHeight: 1.35,
+              maxWidth: "520px",
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
             }}
           >
-            3rd Year Software Engineering Student
+            Software engineering student
           </p>
 
           <div
             style={{
               ...anim(0.5),
               display: "flex",
-              gap: "16px",
+              gap: "12px",
               flexWrap: "wrap",
-              marginTop: "32px",
+              marginTop: "30px",
             }}
           >
             <a
               href="#projects"
               style={{
-                padding: "14px 28px",
-                borderRadius: "999px",
+                padding: "14px 22px",
+                borderRadius: "8px",
                 background: COLORS.accent,
                 color: "#000",
                 fontWeight: 700,
                 textDecoration: "none",
-                fontSize: "15px",
+                fontSize: "14px",
+                letterSpacing: "0.02em",
               }}
             >
               View Projects
             </a>
-            <Link
+            {/* <Link
               to="/resume"
               style={{
-                padding: "14px 28px",
-                borderRadius: "999px",
-                background: COLORS.accent,
-                color: "#000",
+                padding: "13px 22px",
+                borderRadius: "8px",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.18)",
+                color: COLORS.white,
                 fontWeight: 700,
                 textDecoration: "none",
-                fontSize: "15px",
+                fontSize: "14px",
+                letterSpacing: "0.02em",
               }}
             >
               View Resume
-            </Link>
+            </Link> */}
           </div>
         </div>
 
-        {/* RIGHT: interactive 3D cube */}
+        {/* Portrait */}
         <div
           className="hero-image"
           style={{
             ...anim(0.3, "translateY(20px)"),
-            flex: "1 1 450px",
+            flex: "1 1 390px",
             minWidth: "280px",
             display: "flex",
             justifyContent: "center",
@@ -826,28 +827,18 @@ function Hero() {
             }}
           />
           <div
-            className="hero-cube-wrap"
+            className="hero-portrait-wrap"
             style={{
               position: "relative",
-              width: "100%",
-              height: "clamp(420px, 48vw, 650px)",
-              minHeight: "420px",
+              width: "min(100%, 560px)",
+              height: "clamp(400px, 44vw, 610px)",
+              minHeight: "400px",
               overflow: "hidden",
-              borderRadius: "32px",
+              borderRadius: "28px",
+              background: "linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.008))",
+              border: "1px solid rgba(255,255,255,0.08)",
             }}
           >
-            {/* <HeroCube
-              size={1.1}
-              autoRotate={true}
-              autoRotateSpeed={0.1}
-              floating={true}
-              backgroundColor="#030304"
-              style={{
-                opacity: 0.9,
-                transform: "scale(0.92) translateY(10px)",
-                pointerEvents: "none",
-              }}
-            /> */}
             <img
               src={profileImg}
               alt="Sem Bunly"
@@ -856,7 +847,7 @@ function Hero() {
                 left: "50%",
                 bottom: "-4px",
                 transform: "translateX(-50%)",
-                width: "min(96%, 980px)",
+                width: "min(104%, 620px)",
                 maxHeight: "100%",
                 height: "auto",
                 objectFit: "contain",
@@ -912,58 +903,59 @@ function About() {
       id="about"
       className="about-section section-padding"
       style={{
-        padding: "140px 56px",
+        padding: "132px 56px 148px",
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
-        gap: 80,
+        gap: "clamp(42px, 7vw, 96px)",
         alignItems: "center",
       }}
     >
       <Reveal>
-        <SectionLabel>About Me</SectionLabel>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+          <span style={{ width: 28, height: 1, background: COLORS.accent }} />
+          <span style={{ color: COLORS.accent, fontSize: 11, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase" }}>About Me</span>
+        </div>
         <h2
           style={{
             fontFamily: "'Nunito', sans-serif",
-            fontSize: "clamp(34px,3.5vw,52px)",
-            lineHeight: 1.1,
+            fontSize: "clamp(54px,7vw,88px)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.055em",
             color: COLORS.white,
-            marginBottom: 26,
+            marginBottom: 30,
           }}
         >
-          Crafting with{" "}
-          <em style={{ color: COLORS.accent, fontStyle: "italic" }}>code</em>.
+          ABOUT
         </h2>
         <p
           style={{
             fontFamily: "'Nunito', sans-serif",
-            fontSize: 13,
-            lineHeight: 1.9,
-            color: COLORS.muted,
-            marginBottom: 14,
+            fontSize: 15,
+            lineHeight: 1.85,
+            color: "#aab4c5",
+            marginBottom: 18,
+            maxWidth: 620,
           }}
         >
-          I'm a third-year Software Engineering student at Beltei International
-          University (BIU). I build scalable, user-focused web applications with
-          an emphasis on clean design and reliable systems.
+          I'm a third-year Software Engineering student at Beltei International University (BIU), currently working as a Backend Developer. I have a foundation in both backend and frontend development, with experience in building applications and designing user-friendly interfaces.
         </p>
         <p
           style={{
             fontFamily: "'Nunito', sans-serif",
-            fontSize: 13,
-            lineHeight: 1.9,
+            fontSize: 15,
+            lineHeight: 1.85,
             color: COLORS.muted,
-            marginBottom: 32,
+            marginBottom: 0,
+            maxWidth: 620,
           }}
         >
-          I believe great applications are built on strong logic and clean
-          design. My work focuses on building reliable systems with efficient
-          architecture.
+          I believe great applications start with strong engineering principles, thoughtful design, and well-structured systems.
         </p>
       </Reveal>
       <Reveal delay={0.15}>
         <div
-          className="skills-grid"
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}
+          className="about-stats-grid"
+          style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 12 }}
         >
           {stats.map((s, i) => (
             <StatCard key={i} {...s} />
@@ -982,25 +974,31 @@ function StatCard({ num, icon, label }) {
       onMouseLeave={() => setHov(false)}
       className="interactive"
       style={{
-        background: hov ? "#161b22" : COLORS.card,
-        border: `1px solid ${hov ? COLORS.accent : COLORS.border}`,
-        padding: "28px 24px",
+        background: hov ? "linear-gradient(145deg,rgba(77,240,192,0.09),rgba(255,255,255,0.025))" : "rgba(255,255,255,0.025)",
+        border: `1px solid ${hov ? "rgba(77,240,192,0.42)" : "rgba(220,228,240,0.12)"}`,
+        padding: "24px 22px",
+        minHeight: 158,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
         transition: "all 0.3s",
       }}
     >
       <div
         style={{
           fontFamily: "'Nunito', sans-serif",
-          fontSize: 52,
+          fontSize: typeof num === "string" && num === "CAMBODIA" ? 21 : 44,
           color: COLORS.accent,
           lineHeight: 1,
           display: "flex",
           alignItems: "center",
-          minHeight: 52,
+          minHeight: 48,
+          fontWeight: 800,
+          letterSpacing: typeof num === "string" && num === "CAMBODIA" ? "0.02em" : "-0.04em",
         }}
       >
         {icon ? (
-          <span className="material-symbols-outlined" style={{ fontSize: 48 }}>
+          <span className="material-symbols-outlined" style={{ fontSize: 34 }}>
             {icon}
           </span>
         ) : (
@@ -1010,11 +1008,11 @@ function StatCard({ num, icon, label }) {
       <div
         style={{
           fontFamily: "'Nunito', sans-serif",
-          fontSize: 10,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
+          fontSize: 12,
+          letterSpacing: "0.02em",
           color: COLORS.muted,
-          marginTop: 6,
+          lineHeight: 1.5,
+          marginTop: 12,
         }}
       >
         {label}
@@ -1035,98 +1033,73 @@ function Skills() {
         <h2
           style={{
             fontFamily: "'Nunito', sans-serif",
-            fontSize: "clamp(52px,7vw,100px)",
+            fontSize: "clamp(48px,7vw,88px)",
             lineHeight: 1,
             color: COLORS.white,
-            marginBottom: 56,
+            marginBottom: 42,
           }}
         >
           Skills
         </h2>
       </Reveal>
       <div
-        className="skills-grid"
+        className="skill-groups"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3,1fr)",
-          gap: 2,
+          gap: 28,
+          alignItems: "stretch",
         }}
       >
-        {skills.map((s, i) => (
-          <SkillCard key={i} {...s} delay={i * 0.12} />
+        {skillGroups.map((group, i) => (
+          <SkillGroup key={group.title} {...group} delay={i * 0.1} />
         ))}
       </div>
     </section>
   );
 }
 
-function SkillCard({ icon, title, desc, tags, color, delay }) {
-  const [hov, setHov] = useState(false);
+function SkillGroup({ title, icon: GroupIcon, description, items, delay }) {
   return (
     <Reveal delay={delay}>
-      <div
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
-        className="interactive"
-        style={{
-          background: hov ? "#14181f" : COLORS.card,
-          border: `1px solid ${hov ? color : COLORS.border}`,
-          padding: "40px 32px",
-          position: "relative",
-          overflow: "hidden",
-          transition: "all 0.4s",
-          height: "100%",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: `linear-gradient(135deg,${color}0a 0%,transparent 60%)`,
-            opacity: hov ? 1 : 0,
-            transition: "opacity 0.4s",
-          }}
-        />
-        <div style={{ fontSize: 34, marginBottom: 18, color }}>{icon}</div>
+      <div className="skill-group-card" style={{ height: "100%" }}>
+        <GroupIcon aria-hidden="true" style={{ color: COLORS.accent2, fontSize: 32, marginBottom: 22 }} />
         <div
           style={{
             fontFamily: "'Nunito', sans-serif",
-            fontSize: 28,
-            letterSpacing: "0.04em",
+            fontSize: "clamp(22px, 2vw, 28px)",
+            fontWeight: 700,
+            letterSpacing: "0.01em",
             color: COLORS.white,
-            marginBottom: 14,
+            marginBottom: 12,
           }}
         >
           {title}
         </div>
-        <p
-          style={{
-            fontFamily: "'Nunito', sans-serif",
-            fontSize: 12,
-            lineHeight: 1.85,
-            color: COLORS.muted,
-            marginBottom: 24,
-          }}
-        >
-          {desc}
-        </p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          {tags.map((t, i) => (
-            <span
-              key={i}
+        <p className="skill-group-description">{description}</p>
+        <div className="skill-tile-list" style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+          {items.map(([name, Icon, color]) => (
+            <div
+              key={name}
+              className="skill-tile"
               style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontSize: 10,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                padding: "5px 12px",
-                border: `1px solid ${hov ? color + "55" : COLORS.border}`,
-                color: hov ? color : COLORS.muted,
-                transition: "all 0.3s",
+                minHeight: 44,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 9,
+                padding: "7px 11px",
+                border: "1px solid rgba(220,228,240,0.15)",
+                background: "rgba(255,255,255,0.035)",
+                color: COLORS.white,
+                fontSize: 13,
+                fontWeight: 700,
+                whiteSpace: "nowrap",
+                transition: "background 0.2s ease, border-color 0.2s ease, transform 0.2s ease",
               }}
             >
-              {t}
-            </span>
+              <Icon aria-hidden="true" style={{ color, fontSize: 20, flexShrink: 0 }} />
+              <span>{name}</span>
+            </div>
           ))}
         </div>
       </div>
@@ -1187,8 +1160,6 @@ function Projects() {
             marginBottom: 60,
           }}
         >
-          Selected
-          <br />
           <span style={{ color: COLORS.accent }}>Projects</span>
         </h2>
       </Reveal>
@@ -1783,6 +1754,10 @@ export default function Portfolio() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
+        .skill-group-card { padding:32px 28px; border:1px solid rgba(220,228,240,0.15); background:linear-gradient(145deg,rgba(255,255,255,0.045),rgba(255,255,255,0.012)); transition:background 0.25s ease; }
+        .skill-group-card:hover { background:linear-gradient(145deg,rgba(77,240,192,0.055),rgba(255,255,255,0.015)); }
+        .skill-group-description { min-height:44px; margin:0 0 22px; color:${COLORS.muted}; font-size:13px; line-height:1.7; }
+        .skill-tile:hover { background:rgba(255,255,255,0.08) !important; border-color:rgba(77,240,192,0.5) !important; transform:translateY(-2px); }
         html{scroll-behavior:smooth;}
         body{background:${COLORS.bg};color:${COLORS.text};overflow-x:hidden;font-family:'Nunito',sans-serif;}
         body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.3;}
@@ -1795,22 +1770,25 @@ export default function Portfolio() {
           .hero-section { padding: 0 5% !important; }
           .about-section, .contact-section { grid-template-columns: 1fr !important; gap: 40px !important; }
           .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .skill-groups { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
           .projects-grid { grid-template-columns: 1fr !important; }
           .interactive[style*="display: grid"] { grid-template-columns: 1fr !important; }
         }
 
         @media (max-width: 768px) {
-          .nav-container { padding: 16px 24px !important; }
           .nav-links { display: none !important; }
           .hero-content { flex-direction: column !important; text-align: center !important; }
           .hero-text { flex: none !important; margin-bottom: 40px !important; }
           .hero-image { flex: none !important; width: 100% !important; }
-          .hero-cube-wrap { height: min(112vw, 520px) !important; min-height: 360px !important; }
+          .hero-portrait-wrap { height: min(112vw, 520px) !important; min-height: 360px !important; }
           .hero-image-container { flex: none !important; width: 80% !important; transform: translateY(0) !important; }
           .hero-bottom { position: static !important; margin-top: 60px !important; padding: 0 !important; flex-direction: column !important; align-items: center !important; gap: 40px !important; }
           .hero-desc { text-align: center !important; max-width: 100% !important; }
           .section-padding { padding: 100px 24px !important; }
           .skills-grid { grid-template-columns: 1fr !important; }
+          .skill-groups { grid-template-columns: 1fr !important; gap: 30px !important; }
+          .skill-group-card { padding:26px 22px !important; }
+          .skill-tile { min-height: 42px !important; padding: 7px 10px !important; font-size: 12px !important; }
           .about-section { padding: 100px 24px !important; }
           .contact-section { padding: 0 24px 100px !important; }
 
