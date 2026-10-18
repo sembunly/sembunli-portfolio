@@ -53,14 +53,14 @@ export function About() {
             marginBottom: 30,
           }}
         >
-          <ScrollText text="ABOUT" />
+          <ScrollText text="About" />
         </h2>
         <p
           style={{
             fontFamily: TYPOGRAPHY.body,
             fontSize: 15,
             lineHeight: 1.85,
-            color: "#aab4c5",
+            color: COLORS.white,
             marginBottom: 18,
             maxWidth: 620,
           }}

@@ -18,6 +18,7 @@ import {
 } from "react-icons/si";
 import classFeedbackImg from "../assets/biu-se/class-feedback.jpg";
 import tripImg from "../assets/biu-se/trip.jpg";
+import kompotTripImg from "../assets/biu-se/biu-kompot-trip.jpg";
 import { COLORS } from "../theme/tokens";
 
 export const skillGroups = [
@@ -87,13 +88,22 @@ export const university = [
   },
   {
     num: "02",
-    name: "University Field Trip",
-    desc: "A group learning experience with classmates and university faculty.",
+    name: "University Field Trip Tuol Sleng Genocide Museum",
+    desc: "An educational visit to learn about Cambodia’s history, honor the victims, and reflect on the importance of peace and humanity.",
     type: "Student Activity",
     year: "2024",
     color: COLORS.accent2,
     img: tripImg,
     imgAlt: "University field trip group photo",
+  },
+  {
+    num: "03",
+    name: "Kampot Field Trip",
+    desc: "An educational journey exploring Kampot with university.",
+    type: "Student Activity",
+    color: COLORS.accent,
+    img: kompotTripImg,
+    imgAlt: "Sem Bunly and classmates on a university trip to Kompot",
   },
 ];
 

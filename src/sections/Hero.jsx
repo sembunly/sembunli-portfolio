@@ -1,6 +1,5 @@
 import { createElement, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import profileImg from "../assets/me.png";
+import profileImg from "../assets/man1.png";
 import { socialLinks as profileLinks } from "../data/portfolioData";
 import { COLORS, TYPOGRAPHY } from "../theme/tokens";
 import { Reveal } from "../components/portfolio/Animations";
@@ -60,14 +59,6 @@ export function Hero() {
             paddingBottom: "24px",
           }}
         >
-          <div
-            className="hero-badges"
-            style={{ ...anim(0.1), display: "flex", flexWrap: "wrap", gap: 9, marginBottom: 30 }}
-          >
-            {["Backend Developer", "Software Engineering Student", "Phnom Penh, Cambodia"].map((badge) => (
-              <span key={badge} className="hero-badge">{badge}</span>
-            ))}
-          </div>
           <h1
             style={{
               ...anim(0.2),
@@ -82,7 +73,7 @@ export function Hero() {
           >
             <span style={{ color: COLORS.white }}>Sem</span>
             <br />
-            <span style={{ color: "#555555" }}>Bunly</span>
+            <span style={{ color: COLORS.accent }}>Bunly</span>
           </h1>
 
           <p
@@ -90,7 +81,7 @@ export function Hero() {
             style={{
               ...anim(0.35),
               marginTop: "24px",
-              color: "#a3a3a3",
+              color: COLORS.white,
               fontSize: "clamp(15px, 1.5vw, 19px)",
               lineHeight: 1.6,
               maxWidth: "520px",
@@ -98,7 +89,7 @@ export function Hero() {
               letterSpacing: "0.01em",
             }}
           >
-            Backend Developer <span style={{ color: "#555" }}>·</span> Software Engineering Student
+            Backend Developer <span style={{ color: COLORS.accent }}>·</span> Software Engineering Student
           </p>
 
           <p className="hero-summary" style={{ ...anim(0.42) }}>
@@ -129,9 +120,11 @@ export function Hero() {
             >
               View Work <span aria-hidden="true">→</span>
             </a>
-            <Link
+            <a
               className="hero-action hero-action-secondary"
-              to="/resume"
+              href="https://docs.bunli-it.site/"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 padding: "13px 25px",
                 borderRadius: "999px",
@@ -141,8 +134,8 @@ export function Hero() {
                 letterSpacing: "0.02em",
               }}
             >
-              Resume <span aria-hidden="true">↗</span>
-            </Link>
+              Project <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
 

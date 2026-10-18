@@ -97,7 +97,7 @@ export function ProjectCard({
             fontFamily: TYPOGRAPHY.body,
             fontSize: 15,
             letterSpacing: "0.1em",
-            color: COLORS.muted,
+            color: COLORS.white,
           }}
         >
           {num}
@@ -142,7 +142,7 @@ export function ProjectCard({
           style={{
             fontFamily: TYPOGRAPHY.body,
             fontSize: 12,
-            color: COLORS.muted,
+            color: COLORS.white,
             lineHeight: 1.7,
             marginBottom: 18,
           }}
@@ -154,7 +154,7 @@ export function ProjectCard({
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: year ? "space-between" : "flex-start",
           }}
         >
           <div
@@ -164,15 +164,17 @@ export function ProjectCard({
               background: `linear-gradient(to right,${color},transparent)`,
             }}
           />
-          <span
-            style={{
-              fontFamily: TYPOGRAPHY.body,
-              fontSize: 11,
-              color: COLORS.muted,
-            }}
-          >
-            {year}
-          </span>
+          {year && (
+            <span
+              style={{
+                fontFamily: TYPOGRAPHY.body,
+                fontSize: 11,
+                color,
+              }}
+            >
+              {year}
+            </span>
+          )}
         </div>
       </div>
 

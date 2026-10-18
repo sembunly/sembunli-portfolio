@@ -6,9 +6,9 @@ export const COLORS = {
   accent: "#4df0c0",
   accent2: "#4db8f0",
   accent3: "#f0c04d",
-  text: "#dce4f0",
-  muted: "#5a6478",
-  white: "#f0f4ff",
+  text: "#ffffff",
+  muted: "#ffffff",
+  white: "#ffffff",
 };
 
 export const TYPOGRAPHY = {
@@ -19,7 +19,7 @@ export const TYPOGRAPHY = {
 export const SURFACES = { navigation: "#050816" };
 export const NAV_COLORS = {
   accent: COLORS.accent,
-  muted: "#B5B5B5",
+  muted: "#FFFFFF",
   white: "#FFFFFF",
   border: "rgba(255,255,255,0.08)",
 };

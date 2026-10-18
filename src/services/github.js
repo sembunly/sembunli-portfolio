@@ -22,7 +22,7 @@ async function requestJson(url, signal, headers = {}) {
 
 export function fetchRepositories(signal) {
   return requestJson(
-    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=9`,
+    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`,
     signal,
   );
 }
