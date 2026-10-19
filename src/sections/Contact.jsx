@@ -57,7 +57,7 @@ export function Contact() {
   );
 }
 
-export function ContactRow({ icon, label, value, href, target }) {
+export function ContactRow({ icon, Icon, label, value, href, target }) {
   const [hov, setHov] = useState(false);
   return (
     <a
@@ -79,12 +79,19 @@ export function ContactRow({ icon, label, value, href, target }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        <span
-          className="material-symbols-outlined"
-          style={{ fontSize: 22, color: COLORS.accent }}
-        >
-          {icon}
-        </span>
+        {Icon ? (
+          <Icon
+            aria-hidden="true"
+            style={{ fontSize: 22, color: COLORS.accent }}
+          />
+        ) : (
+          <span
+            className="material-symbols-outlined"
+            style={{ fontSize: 22, color: COLORS.accent }}
+          >
+            {icon}
+          </span>
+        )}
         <div>
           <div
             style={{
