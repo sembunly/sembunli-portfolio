@@ -120,7 +120,7 @@ export function Hero() {
             >
               View Work <span aria-hidden="true">→</span>
             </a>
-            <a
+            {/* <a
               className="hero-action hero-action-secondary"
               href="https://docs.bunli-it.site/"
               target="_blank"
@@ -135,7 +135,7 @@ export function Hero() {
               }}
             >
               Project <span aria-hidden="true">↗</span>
-            </a>
+            </a> */}
           </div>
         </div>
 

@@ -14,7 +14,7 @@ import {
   SiAndroidstudio, SiCakephp, SiCplusplus, SiCss, SiDart, SiExpress,
   SiFlutter, SiGit, SiGithub, SiGitlab, SiHtml5, SiIntellijidea,
   SiJavascript, SiLaravel, SiMysql, SiNotion, SiPhp, SiPostgresql,
-  SiPostman, SiReact, SiSpringboot, SiSwagger, SiTailwindcss,
+  SiPostman, SiReact, SiSpringboot, SiSwagger, SiTailwindcss, SiTiktok,
 } from "react-icons/si";
 import classFeedbackImg from "../assets/biu-se/class-feedback.jpg";
 import tripImg from "../assets/biu-se/trip.jpg";
@@ -37,7 +37,7 @@ export const skillGroups = [
     ],
   },
   {
-    title: "FullStack Development",
+    title: "Software Development",
     icon: FaLayerGroup,
     description: "Frameworks and databases for building complete applications.",
     items: [
@@ -169,5 +169,12 @@ export const contacts = [
     href: "https://www.facebook.com/sem.bunlisem.14jan",
     target: "_blank",
     Icon: FaFacebook,
+  },
+  {
+    label: "TikTok",
+    value: "tiktok.com/@s.bunli.jan14",
+    href: "https://www.tiktok.com/@s.bunli.jan14",
+    target: "_blank",
+    Icon: SiTiktok,
   },
 ];

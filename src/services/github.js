@@ -20,9 +20,9 @@ async function requestJson(url, signal, headers = {}) {
   return response.json();
 }
 
-export function fetchRepositories(signal) {
+export function fetchRepositories(signal, limit = 6) {
   return requestJson(
-    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`,
+    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=${limit}`,
     signal,
   );
 }
@@ -30,14 +30,22 @@ export function fetchRepositories(signal) {
 export async function fetchGitHubActivity(signal) {
   const contributionUrl = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=last`;
   const profileUrl = `https://api.github.com/users/${GITHUB_USERNAME}`;
-  const pullRequestsUrl = `https://api.github.com/search/issues?q=author%3A${GITHUB_USERNAME}%20type%3Apr`;
+  const pullRequestsUrl = `https://api.github.com/search/issues?q=author%3A${GITHUB_USERNAME}%20type%3Apr&sort=updated&order=desc&per_page=3`;
+  const reviewsUrl = `https://api.github.com/search/issues?q=reviewed-by%3A${GITHUB_USERNAME}%20type%3Apr&sort=updated&order=desc&per_page=3`;
 
-  const [contributionResult, profileResult, pullRequestsResult] =
-    await Promise.allSettled([
-      requestJson(contributionUrl, signal, { Accept: "application/json" }),
-      requestJson(profileUrl, signal),
-      requestJson(pullRequestsUrl, signal),
-    ]);
+  const [
+    contributionResult,
+    profileResult,
+    pullRequestsResult,
+    reviewsResult,
+    repositoriesResult,
+  ] = await Promise.allSettled([
+    requestJson(contributionUrl, signal, { Accept: "application/json" }),
+    requestJson(profileUrl, signal),
+    requestJson(pullRequestsUrl, signal),
+    requestJson(reviewsUrl, signal),
+    fetchRepositories(signal, 3),
+  ]);
 
   if (contributionResult.status === "rejected") {
     throw contributionResult.reason;
@@ -55,6 +63,13 @@ export async function fetchGitHubActivity(signal) {
   const pullRequestData = pullRequestsResult.status === "fulfilled"
     ? pullRequestsResult.value
     : null;
+  const reviewData = reviewsResult.status === "fulfilled"
+    ? reviewsResult.value
+    : null;
+  const repositories = repositoriesResult.status === "fulfilled" &&
+    Array.isArray(repositoriesResult.value)
+    ? repositoriesResult.value
+    : null;
 
   return {
     contributions: contributionData.contributions,
@@ -70,5 +85,15 @@ export async function fetchGitHubActivity(signal) {
     pullRequests: Number.isFinite(pullRequestData?.total_count)
       ? pullRequestData.total_count
       : null,
+    recentPullRequests: pullRequestsResult.status === "fulfilled" && Array.isArray(pullRequestData?.items)
+      ? pullRequestData.items
+      : null,
+    codeReviews: Number.isFinite(reviewData?.total_count)
+      ? reviewData.total_count
+      : null,
+    recentReviews: reviewsResult.status === "fulfilled" && Array.isArray(reviewData?.items)
+      ? reviewData.items
+      : null,
+    repositories,
   };
 }

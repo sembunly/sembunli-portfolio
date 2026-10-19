@@ -1,4 +1,4 @@
-const CACHE_NAME = "sembunly-portfolio-v1";
+const CACHE_NAME = "sembunly-portfolio-v2";
 const APP_SHELL = [
   "/",
   "/manifest.json",

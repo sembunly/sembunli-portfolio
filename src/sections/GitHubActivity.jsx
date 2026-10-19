@@ -17,6 +17,78 @@ function ActivityStat({ label, value }) {
   );
 }
 
+function ActivityFeedCard({ title, description, items, totalCount, kind }) {
+  const hasItems = Array.isArray(items);
+  const feedItems = items ?? [];
+
+  return (
+    <section className="github-activity-feed-card" aria-label={title}>
+      <div className="github-activity-feed-heading">
+        <div>
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </div>
+        <span className="github-activity-feed-count">
+          {totalCount === null || totalCount === undefined
+            ? "—"
+            : numberFormat.format(totalCount)}
+        </span>
+      </div>
+      {feedItems.length > 0 ? (
+        <ul className="github-activity-feed-list">
+          {feedItems.map((item) => {
+            const repoName = item.repository_url?.split("/repos/")[1];
+            return (
+              <li key={item.id}>
+                <a href={item.html_url} target="_blank" rel="noopener noreferrer">
+                  {item.title}
+                </a>
+                {repoName && <span>{repoName}</span>}
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p className="github-activity-feed-empty">
+          {!hasItems
+            ? "Activity is unavailable right now."
+            : kind === "reviews"
+              ? "No public reviews found."
+              : "No public pull requests found."}
+        </p>
+      )}
+    </section>
+  );
+}
+
+function RepositoryLinksCard({ repositories }) {
+  return (
+    <section className="github-activity-feed-card" aria-label="Recently updated repositories">
+      <div className="github-activity-feed-heading">
+        <div>
+          <h3>Repositories</h3>
+          <p>Recently updated public projects</p>
+        </div>
+        <span className="github-activity-feed-count">{repositories?.length ?? "—"}</span>
+      </div>
+      {repositories?.length ? (
+        <ul className="github-activity-feed-list github-activity-repositories">
+          {repositories.map((repository) => (
+            <li key={repository.id}>
+              <a href={repository.html_url} target="_blank" rel="noopener noreferrer">
+                {repository.name} <span aria-hidden="true">↗</span>
+              </a>
+              <span>{repository.description || repository.language || "Public repository"}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="github-activity-feed-empty">Repository details are unavailable right now.</p>
+      )}
+    </section>
+  );
+}
+
 export function GitHubActivity() {
   const { activity, status, error, retry } = useGitHubActivity();
   const stats = activity
@@ -25,6 +97,10 @@ export function GitHubActivity() {
         activity.publicRepositories !== null && {
           label: "Public repositories",
           value: activity.publicRepositories,
+        },
+        activity.codeReviews !== null && {
+          label: "Pull requests reviewed",
+          value: activity.codeReviews,
         },
         activity.pullRequests !== null && {
           label: "Pull requests",
@@ -71,7 +147,7 @@ export function GitHubActivity() {
               {Array.from({ length: 371 }, (_, index) => <i key={index} />)}
             </div>
             <div className="github-activity-stat-skeleton" aria-hidden="true">
-              <i /><i /><i />
+              <i /><i /><i /><i />
             </div>
           </div>
         )}
@@ -94,6 +170,23 @@ export function GitHubActivity() {
               ))}
             </div>
             <GitHubContributionCalendar contributions={activity.contributions} />
+            <div className="github-activity-feeds">
+              <RepositoryLinksCard repositories={activity.repositories} />
+              <ActivityFeedCard
+                title="Code reviews"
+                description="Public pull requests reviewed"
+                items={activity.recentReviews}
+                totalCount={activity.codeReviews}
+                kind="reviews"
+              />
+              <ActivityFeedCard
+                title="Pull requests"
+                description="Recently updated contributions"
+                items={activity.recentPullRequests}
+                totalCount={activity.pullRequests}
+                kind="pull-requests"
+              />
+            </div>
           </>
         )}
       </div>
