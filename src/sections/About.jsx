@@ -4,10 +4,18 @@ import { Counter, Reveal, ScrollText } from "../components/portfolio/Animations"
 
 export function About() {
   const stats = [
-    { num: "3rd", label: "Year at BELTEI International University" },
-    { num: 3, label: "Disciplines" },
-    { icon: "all_inclusive", label: "Curiosity" },
-    { num: "CAMBODIA", label: "Phnom Penh" },
+    { num: "3rd Year", label: "Education", fontSize: 21 },
+    {
+      num: "BELTEI University",
+      label: "University",
+      fontSize: 21,
+    },
+    {
+      num: "Backend · Mobile · Learning",
+      label: "Interests",
+      fontSize: 21,
+    },
+    { num: "Phnom Penh, KH", label: "Location", fontSize: 21 },
   ];
   return (
     <section
@@ -65,8 +73,8 @@ export function About() {
             maxWidth: 620,
           }}
         >
-          I'm a third-year Software Engineering student at Beltei International
-          University (BIU), currently working as a Backend Developer. I have a
+          I'm a Year 03 Software Engineering student at BELTEI International
+          University, currently working as a Backend Developer. I have a
           foundation in both backend and frontend development, with experience
           in building applications and designing user-friendly interfaces.
         </p>
@@ -102,7 +110,7 @@ export function About() {
   );
 }
 
-export function StatCard({ num, icon, label }) {
+export function StatCard({ num, icon, label, fontSize = 44 }) {
   const [hov, setHov] = useState(false);
   return (
     <div
@@ -125,17 +133,14 @@ export function StatCard({ num, icon, label }) {
       <div
         style={{
           fontFamily: TYPOGRAPHY.body,
-          fontSize: typeof num === "string" && num === "CAMBODIA" ? 21 : 44,
+          fontSize,
           color: COLORS.accent,
           lineHeight: 1,
           display: "flex",
           alignItems: "center",
           minHeight: 48,
           fontWeight: 800,
-          letterSpacing:
-            typeof num === "string" && num === "CAMBODIA"
-              ? "0.02em"
-              : "-0.04em",
+          letterSpacing: fontSize <= 22 ? "0.01em" : "-0.04em",
         }}
       >
         {icon ? (
