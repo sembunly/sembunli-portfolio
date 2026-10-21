@@ -6,6 +6,7 @@ import { Marquee } from "./sections/Marquee";
 import { About } from "./sections/About";
 import { Skills } from "./sections/Skills";
 import { University } from "./sections/University";
+import { ProjectDemos } from "./sections/ProjectDemos";
 import { Projects } from "./sections/Projects";
 import { GitHubActivity } from "./sections/GitHubActivity";
 import { Contact } from "./sections/Contact";
@@ -26,6 +27,8 @@ export default function Portfolio() {
       <Skills />
       <Divider />
       <University />
+      <Divider />
+      <ProjectDemos />
       <Divider />
       <Projects />
       <Divider />
