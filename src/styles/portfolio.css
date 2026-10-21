@@ -29,6 +29,7 @@
         .skill-group-description { min-height:44px; margin:0 0 22px; color:var(--color-muted); font-size:13px; line-height:1.7; }
         .skill-tile:hover { background:rgba(255,255,255,0.08) !important; border-color:rgba(77,240,192,0.5) !important; transform:translateY(-2px); }
         .github-repos-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+        .project-demos-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
         .github-repos-sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
         .github-repo-card { height:100%; min-height:250px; display:flex; flex-direction:column; padding:clamp(20px,2vw,26px); border:1px solid var(--color-border); background:linear-gradient(145deg,#0b0b0b,#050505); box-shadow:0 8px 28px rgba(0,0,0,0.12); transition:border-color 0.28s ease,background 0.28s ease,transform 0.28s cubic-bezier(0.2,0.8,0.2,1),box-shadow 0.28s ease; }
         .github-repo-card:hover, .github-repo-card:focus-within { transform:translateY(-4px); border-color:rgba(77,240,192,0.48); background:linear-gradient(145deg,rgba(77,240,192,0.065),#080a09 68%); box-shadow:0 14px 36px rgba(0,0,0,0.32),0 0 28px rgba(77,240,192,0.045); }
@@ -136,6 +137,7 @@
           .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .skill-groups { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
           .university-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+          .project-demos-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
           .github-repos-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
           .github-activity-stats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
           .github-activity-stat { padding:14px; }
@@ -168,6 +170,7 @@
           .github-calendar-weekdays { font-size:8px; }
           .skills-grid { grid-template-columns: 1fr !important; }
           .university-grid { grid-template-columns: 1fr !important; }
+          .project-demos-grid { grid-template-columns: 1fr; }
           .skill-groups { grid-template-columns: 1fr !important; gap: 30px !important; }
           .skill-group-card { padding:26px 22px !important; }
           .skill-tile { min-height: 42px !important; padding: 7px 10px !important; font-size: 12px !important; }
