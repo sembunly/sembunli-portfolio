@@ -3,7 +3,7 @@ import { useIsMobile, useScrollDirection } from "../hooks/usePortfolioHooks";
 import { NAV_COLORS as COLORS, TYPOGRAPHY } from "../theme/tokens";
 
 export function Nav({ scrollY }) {
-  const sections = ["about", "skills", "projects", "activity", "contact"];
+  const sections = ["home", "about", "skills", "project-demos", "projects", "activity", "contact"];
   const desktopSections = sections.filter((section) => section !== "contact");
   const dir = useScrollDirection();
   const isMobile = useIsMobile();
@@ -94,7 +94,7 @@ export function Nav({ scrollY }) {
                   e.target.style.background = "transparent";
                 }}
               >
-                {s}
+                {s === "project-demos" ? "Proj Demo" : s}
               </a>
             ))}
           </div>
@@ -147,18 +147,7 @@ export function Nav({ scrollY }) {
                 height: 2,
                 background: COLORS.white,
                 borderRadius: 10,
-                transform: menuOpen
-                  ? "rotate(45deg) translateY(5px)"
-                  : "rotate(0)",
-                transition: "0.3s",
-              }}
-            />
-            <span
-              style={{
-                width: 18,
-                height: 2,
-                background: COLORS.white,
-                borderRadius: 10,
+                transform: "none",
                 opacity: menuOpen ? 0 : 1,
                 transition: "0.3s",
               }}
@@ -169,9 +158,19 @@ export function Nav({ scrollY }) {
                 height: 2,
                 background: COLORS.white,
                 borderRadius: 10,
-                transform: menuOpen
-                  ? "rotate(-45deg) translateY(-5px)"
-                  : "rotate(0)",
+                opacity: 1,
+                transform: "none",
+                transition: "0.3s",
+              }}
+            />
+            <span
+              style={{
+                width: 18,
+                height: 2,
+                background: COLORS.white,
+                borderRadius: 10,
+                transform: "none",
+                opacity: menuOpen ? 0 : 1,
                 transition: "0.3s",
               }}
             />
@@ -218,7 +217,7 @@ export function Nav({ scrollY }) {
                 transition: `all 0.5s ${i * 0.08}s ease`,
               }}
             >
-              {s}
+              {s === "project-demos" ? "Proj Demo" : s}
             </a>
           ))}
         </div>

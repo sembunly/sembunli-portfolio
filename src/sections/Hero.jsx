@@ -114,10 +114,6 @@ export function Hero() {
             Backend Developer <span style={{ color: COLORS.accent }}>·</span> Software Engineering Student
           </p>
 
-          <p className="hero-summary" style={{ ...anim(0.42) }}>
-            Building reliable backend systems and thoughtful digital experiences.
-          </p>
-
           <div
             className="hero-actions"
             style={{
