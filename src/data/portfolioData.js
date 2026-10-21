@@ -12,13 +12,16 @@ import {
 import { TbBrandCSharp } from "react-icons/tb";
 import {
   SiAndroidstudio, SiCakephp, SiCplusplus, SiCss, SiDart, SiExpress,
-  SiFlutter, SiGit, SiGithub, SiGitlab, SiHtml5, SiIntellijidea,
+  SiDocker, SiFlutter, SiGit, SiGithub, SiGitlab, SiHtml5, SiIntellijidea,
   SiJavascript, SiLaravel, SiMysql, SiNotion, SiPhp, SiPostgresql,
   SiPostman, SiReact, SiSpringboot, SiSwagger, SiTailwindcss, SiTiktok,
 } from "react-icons/si";
 import classFeedbackImg from "../assets/biu-se/class-feedback.jpg";
 import tripImg from "../assets/biu-se/trip.jpg";
 import kompotTripImg from "../assets/biu-se/biu-kompot-trip.jpg";
+import solarProjectImg from "../assets/project/solar-proj.jpg";
+import paymentProjectImg from "../assets/project/payment.jpg";
+import studentPortalImg from "../assets/project/usp1.jpg";
 import { COLORS } from "../theme/tokens";
 
 export const skillGroups = [
@@ -71,6 +74,7 @@ export const skillGroups = [
       ["Android Studio", SiAndroidstudio, "#3ddc84"],
       ["Notion", SiNotion, "#f0f4ff"],
       ["Swagger", SiSwagger, "#85ea2d"],
+      ["Docker", SiDocker, "#2496ed"],
     ],
   },
 ];
@@ -104,6 +108,39 @@ export const university = [
     color: COLORS.accent,
     img: kompotTripImg,
     imgAlt: "Sem Bunly and classmates on a university trip to Kompot",
+  },
+];
+
+export const projectDemos = [
+  {
+    num: "01",
+    name: "Solar",
+    desc: "A web platform for exploring solar.",
+    type: "Live Demo",
+    color: COLORS.accent,
+    img: solarProjectImg,
+    imgAlt: "Solar energy project website preview",
+    link: "https://solar.bunli-it.site/",
+  },
+  {
+    num: "02",
+    name: "Laravel KHQR Payment",
+    desc: "A Laravel integration for KHQR payments.",
+    type: "GitHub",
+    color: COLORS.accent2,
+    img: paymentProjectImg,
+    imgAlt: "Laravel KHQR payment project preview",
+    link: "https://github.com/sembunly/Laravel-KHQR-Payment",
+  },
+  {
+    num: "03",
+    name: "University Student Portal",
+    desc: "A student portal for accessing university services and information.",
+    type: "GitHub",
+    color: COLORS.accent,
+    img: studentPortalImg,
+    imgAlt: "University student portal project preview",
+    link: "https://github.com/sembunly/university-student-portal",
   },
 ];
 
