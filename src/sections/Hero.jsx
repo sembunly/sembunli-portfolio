@@ -1,5 +1,4 @@
 import { createElement, useEffect, useState } from "react";
-import initialPortrait from "../assets/man.png";
 import profileImg from "../assets/man1.png";
 import { socialLinks as profileLinks } from "../data/portfolioData";
 import { COLORS, TYPOGRAPHY } from "../theme/tokens";
@@ -7,32 +6,11 @@ import { Reveal } from "../components/portfolio/Animations";
 
 export function Hero() {
   const [loaded, setLoaded] = useState(false);
-  const [portraitTransitioned, setPortraitTransitioned] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setPortraitTransitioned(true), 2300);
-    return () => clearTimeout(timer);
-  }, [loaded]);
-
-  const revealPortrait = (event) => {
-    if (event.pointerType !== "mouse") return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-
-    event.currentTarget.style.setProperty("--pointer-x", `${x}%`);
-    event.currentTarget.style.setProperty("--pointer-y", `${y}%`);
-    event.currentTarget.classList.add("is-revealing");
-  };
-
-  const hideRevealedPortrait = (event) => {
-    event.currentTarget.classList.remove("is-revealing");
-  };
 
   const anim = (delay, targetTransform = "translateY(0)") => ({
     opacity: loaded ? 1 : 0,
@@ -172,9 +150,6 @@ export function Hero() {
         >
           <div
             className="hero-portrait-wrap"
-            data-transitioned={portraitTransitioned}
-            onPointerMove={revealPortrait}
-            onPointerLeave={hideRevealedPortrait}
             style={{
               position: "relative",
               width: "min(100%, 560px)",
@@ -187,14 +162,7 @@ export function Hero() {
             }}
           >
             <img
-              className="hero-portrait-background"
-              src={initialPortrait}
-              alt=""
-              aria-hidden="true"
-              draggable="false"
-            />
-            <img
-              className="hero-portrait-foreground"
+              className="hero-portrait"
               src={profileImg}
               alt="Sem Bunly"
               draggable="false"
