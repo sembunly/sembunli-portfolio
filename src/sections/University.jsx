@@ -29,7 +29,7 @@ export function University() {
       </Reveal>
       <div
         className="university-grid"
-        style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 12 }}
+        style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 12 }}
       >
         {university.map((item, i) => (
           <ProjectCard key={item.num} {...item} delay={i * 0.1} />

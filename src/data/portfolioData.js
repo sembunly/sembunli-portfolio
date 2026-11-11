@@ -17,11 +17,10 @@ import {
   SiPostman, SiReact, SiSpringboot, SiSwagger, SiTailwindcss, SiTiktok,
 } from "react-icons/si";
 import classFeedbackImg from "../assets/biu-se/class-feedback.jpg";
-import tripImg from "../assets/biu-se/trip.jpg";
 import kompotTripImg from "../assets/biu-se/biu-kompot-trip.jpg";
 import solarProjectImg from "../assets/project/solar-proj.jpg";
 import paymentProjectImg from "../assets/project/payment.jpg";
-import studentPortalImg from "../assets/project/usp1.jpg";
+import novaNewsImg from "../assets/project/nova-news.jpg";
 import { COLORS } from "../theme/tokens";
 
 export const skillGroups = [
@@ -92,16 +91,6 @@ export const university = [
   },
   {
     num: "02",
-    name: "University Field Trip Tuol Sleng Genocide Museum",
-    desc: "An educational visit to learn about Cambodia’s history, honor the victims, and reflect on the importance of peace and humanity.",
-    type: "Student Activity",
-    year: "2024",
-    color: COLORS.accent2,
-    img: tripImg,
-    imgAlt: "University field trip group photo",
-  },
-  {
-    num: "03",
     name: "Kampot Field Trip",
     desc: "An educational journey exploring Kampot with university.",
     type: "Student Activity",
@@ -134,12 +123,12 @@ export const projectDemos = [
   },
   {
     num: "03",
-    name: "University Student Portal",
+    name: "Novanews",
     desc: "A student portal for accessing university services and information.",
     type: "GitHub",
     color: COLORS.accent,
-    img: studentPortalImg,
-    imgAlt: "University student portal project preview",
+    img: novaNewsImg,
+    imgAlt: "Novanews project preview",
     link: "https://github.com/sembunly/university-student-portal",
   },
 ];
