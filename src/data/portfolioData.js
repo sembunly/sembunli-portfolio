@@ -124,12 +124,12 @@ export const projectDemos = [
   {
     num: "03",
     name: "Novanews",
-    desc: "A student portal for accessing university services and information.",
-    type: "GitHub",
+    desc: "A modern news platform covering the latest stories and global insights.",
+    type: "Live Demo",
     color: COLORS.accent,
     img: novaNewsImg,
     imgAlt: "Novanews project preview",
-    link: "https://github.com/sembunly/university-student-portal",
+    link: "https://news.bunli-it.site/",
   },
 ];
 
