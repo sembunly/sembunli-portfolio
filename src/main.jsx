@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Portfolio from './portfolio.jsx'
-import Calculator from './project/calculator.jsx'
 import Resume from './pages/Resume.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -10,7 +9,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Portfolio />} />
-        <Route path="/project/calculator" element={<Calculator />} />
         <Route path="/resume" element={<Resume />} />
       </Routes>
     </BrowserRouter>
