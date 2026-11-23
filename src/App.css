@@ -1,3 +1,7 @@
+#root {
+  background: #000;
+}
+
 .portfolio-entry--loading {
   opacity: 0;
 }

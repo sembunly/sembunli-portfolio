@@ -29,19 +29,54 @@
 .splash-screen__grain {
   position: absolute;
   inset: 0;
-  opacity: .18;
-  background-image: radial-gradient(rgba(126, 234, 195, .32) .65px, transparent .65px);
-  background-size: 7px 7px;
-  mask-image: linear-gradient(135deg, #000, transparent 75%);
+  opacity: .12;
+  background-image: radial-gradient(rgba(255, 255, 255, .5) .5px, transparent .6px);
+  background-size: 6px 6px;
+  mask-image: linear-gradient(135deg, #000, transparent 66%);
   pointer-events: none;
 }
+
+.splash-screen__orb {
+  position: absolute;
+  width: min(52vw, 660px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(126, 234, 195, .16), transparent 68%);
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+.splash-screen__orb { display: none; }
 
 .splash-screen__content {
   position: relative;
   display: grid;
   place-items: center;
+  align-content: center;
+  grid-template-rows: auto auto;
+  gap: clamp(20px, 3vw, 36px);
   width: min(88vw, 980px);
   min-height: min(64vw, 460px);
+}
+
+.splash-screen__image-frame {
+  position: relative;
+  width: clamp(108px, 13vw, 164px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  opacity: 0;
+  animation: splash-image-in 700ms 120ms cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.splash-screen__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.08);
+  animation: splash-image-settle 2.3s 180ms ease-out forwards;
 }
 
 .splash-screen__wordmark {
@@ -51,11 +86,15 @@
   font-weight: 900;
   line-height: 1;
   letter-spacing: -.075em;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, .42);
 }
 
 .splash-screen__wordmark span {
   display: inline-block;
   opacity: 0;
+}
+
+.splash-screen__content--name .splash-screen__wordmark span {
   animation: splash-letter-in 520ms var(--letter-delay) cubic-bezier(.16, 1, .3, 1) forwards;
 }
 
@@ -67,12 +106,23 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes splash-image-in {
+  from { opacity: 0; transform: translateY(20px) scale(.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes splash-image-settle {
+  to { transform: scale(1); }
+}
+
 @media (max-width: 520px) {
-  .splash-screen__content { min-height: 300px; }
+  .splash-screen__content { min-height: 300px; gap: 20px; }
+  .splash-screen__image-frame { width: 102px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .splash-screen,
-  .splash-screen__wordmark span { opacity: 1; }
+  .splash-screen__wordmark span,
+  .splash-screen__image-frame { opacity: 1; }
   .splash-screen * { animation: none !important; }
 }

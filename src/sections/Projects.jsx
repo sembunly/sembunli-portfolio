@@ -1,7 +1,60 @@
 import { FaCodeBranch, FaGithub, FaStar } from "react-icons/fa";
+import { COLORS, TYPOGRAPHY } from "../theme/tokens";
+import { Reveal, ScrollText } from "../components/portfolio/Animations";
+import { SectionLabel } from "../components/portfolio/Primitives";
+import { useGitHubRepositories } from "../hooks/useGitHubRepositories";
 
 export function Projects() {
-  return null;
+  const { repositories, status } = useGitHubRepositories();
+
+  return (
+    <section
+      id="projects"
+      className="section-padding"
+      style={{ padding: "0 56px 140px" }}
+    >
+      <Reveal>
+        <SectionLabel>GitHub · Recent work</SectionLabel>
+        <h2
+          style={{
+            fontFamily: TYPOGRAPHY.body,
+            fontSize: "clamp(52px,7vw,100px)",
+            lineHeight: 1,
+            color: COLORS.white,
+            marginBottom: 60,
+          }}
+        >
+          <span style={{ color: COLORS.accent }}>
+            <ScrollText text="Projects" />
+          </span>
+        </h2>
+      </Reveal>
+
+      <div className="github-repos-grid" aria-busy={status === "loading"}>
+        {status === "loading" &&
+          Array.from({ length: 9 }, (_, index) => (
+            <div className="github-repo-skeleton" key={index} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+          ))}
+
+        {status === "success" && repositories.length === 0 && (
+          <p className="github-repos-message" role="status">
+            No public repositories found.
+          </p>
+        )}
+
+        {status === "success" &&
+          repositories.map((repository, index) => (
+            <Reveal key={repository.id} delay={index * 0.06}>
+              <GitHubRepositoryCard repository={repository} />
+            </Reveal>
+          ))}
+      </div>
+    </section>
+  );
 }
 
 export function GitHubRepositoryCard({ repository }) {
