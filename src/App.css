@@ -1,3 +1,27 @@
+.portfolio-entry--loading {
+  opacity: 0;
+}
+
+.portfolio-entry--revealed {
+  animation: portfolio-reveal 900ms ease-out both;
+}
+
+@keyframes portfolio-reveal {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-entry--revealed {
+    animation: none;
+  }
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;

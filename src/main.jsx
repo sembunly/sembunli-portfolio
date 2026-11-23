@@ -1,18 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Portfolio from './portfolio.jsx'
-import Resume from './pages/Resume.jsx'
+import App from './App.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Portfolio />} />
-        <Route path="/resume" element={<Resume />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+  <React.StrictMode><App /></React.StrictMode>
 )
 
 if ('serviceWorker' in navigator) {

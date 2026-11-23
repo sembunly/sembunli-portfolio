@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'Nunito';
+  src: url('../font/Nunito/Nunito-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+.splash-screen {
+  --splash-mint: #7eeac3;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  will-change: transform, opacity;
+  transition: transform 850ms cubic-bezier(.22, 1, .36, 1), opacity 850ms ease-out;
+}
+
+.splash-screen--exit {
+  transform: scale(.94);
+  opacity: 0;
+}
+
+.splash-screen__grain {
+  position: absolute;
+  inset: 0;
+  opacity: .18;
+  background-image: radial-gradient(rgba(126, 234, 195, .32) .65px, transparent .65px);
+  background-size: 7px 7px;
+  mask-image: linear-gradient(135deg, #000, transparent 75%);
+  pointer-events: none;
+}
+
+.splash-screen__content {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(88vw, 980px);
+  min-height: min(64vw, 460px);
+}
+
+.splash-screen__wordmark {
+  display: flex;
+  margin: 0;
+  font-size: clamp(2.15rem, 6.2vw, 6.3rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.075em;
+}
+
+.splash-screen__wordmark span {
+  display: inline-block;
+  opacity: 0;
+  animation: splash-letter-in 520ms var(--letter-delay) cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.splash-screen__letter--white { color: #fff; }
+.splash-screen__letter--mint { color: var(--splash-mint); }
+
+@keyframes splash-letter-in {
+  from { opacity: 0; transform: translateY(28px) scale(.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 520px) {
+  .splash-screen__content { min-height: 300px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen,
+  .splash-screen__wordmark span { opacity: 1; }
+  .splash-screen * { animation: none !important; }
+}
